@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import views.Views;
 
 @Entity
-@Table(name="equipe")
 @SequenceGenerator(name = "seqEquipe", sequenceName = "seq_equipe", initialValue = 100, allocationSize = 1)
 public class Equipe {
 

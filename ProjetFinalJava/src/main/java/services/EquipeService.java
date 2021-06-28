@@ -21,9 +21,9 @@ public class EquipeService {
 		if (equipe.getName() == null || equipe.getName().isEmpty()) {
 			throw new EquipeException("Nom obligatoire");
 		}
-//		if (equipe.getEquipeKey() == null) {
-//			throw new EquipeException("Pas d'equipeKey pour cette equipe");
-//		}
+		if (equipe.getKey() == null) {
+			throw new EquipeException("Pas de Key pour cette equipe");
+		}
 		return equipeRepository.save(equipe);
 	}
 	
