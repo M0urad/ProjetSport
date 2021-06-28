@@ -1,5 +1,7 @@
 package application.entities;
 
+import java.nio.MappedByteBuffer;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -7,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
@@ -20,31 +23,52 @@ import application.views.Views;
 @Entity
 @SequenceGenerator(name = "seqJoueur", sequenceName = "seq_joueur", initialValue = 100, allocationSize = 1)
 public class Joueur {
+	
 	@JsonView(Views.Common.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqJoueur")
 	private Integer id;
+	
 	@JsonView(Views.Common.class)
 	@Column(name = "nom", length = 100, nullable = false)
 	@NotEmpty(message = "le nom ne peut pas etre vide")
 	@Size(min = 2)
 	private String nom;
+	
 	@JsonView(Views.Common.class)
 	@Column(name = "prenom", length = 100, nullable = false)
 	@NotEmpty(message = "le prenom ne peut pas etre vide")
 	@Size(min = 2)
 	private String prenom;
+	
 	@JsonView(Views.Common.class)
 	@Column(name = "NumeroTelephone")
 	private int numTel;
+	
 	@OneToOne
 	@JsonView(Views.Common.class)
 	@JoinColumn(name = "id_poste", foreignKey = @ForeignKey(name = "joueur_id_poste_fk"))
 	private String poste;
+	
 	@OneToOne
-	@JsonView(Views.Common.class)
+	@JsonView(Views.JoueurWithCompte.class)
 	@JoinColumn(name = "id_compte", foreignKey = @ForeignKey(name = "joueur_id_compte_fk"))
 	private Compte compte;
+	
+	@JsonView(Views.JoueurWithRencontre.class)
+	@OneToOne(mappedBy = "Joueur")
+	private Rencontre rencontre;
+	
+	aa
+	@OneToMany(mappedBy = "joueur")
+	private EquipeKey key;
+	
+	@OneToOne(mappedBy = "joueur")
+	@JsonView(Views.InscriptionWithJoueur.class)
+	private Inscription inscription;
+	
+	@OneToMany(mappedBy = "joueur")
+	private Message message;
 	
 	public Joueur() {
 		

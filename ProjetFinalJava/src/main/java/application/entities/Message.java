@@ -21,16 +21,22 @@ import application.views.Views;
 public class Message {
 	@JsonView(Views.Common.class)
 	@Id
-	@Column(name = "id")
+	@Column(name = "id_message")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqProduit")
 	private Integer id;
 	
 	@JsonView(Views.Common.class)
 	private String commentaire;
+	
 	@ManyToOne
-	@JsonView(Views.Common.class)
+	@JsonView(Views.MessageWithJoueur.class)
 	@JoinColumn(name = "id_joueur", foreignKey = @ForeignKey(name = "message_id_joueur_fk"))
 	private Joueur joueur;
+	
+	@JsonView(Views.MessageWithRencontre.class)
+	@ManyToOne
+	@JoinColumn(name = "id_rencontre", foreignKey = @ForeignKey(name = "message_id_rencontre_fk"))
+	private Rencontre rencontre;
 
 	public Message() {
 	}

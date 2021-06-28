@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -21,12 +22,18 @@ public class Equipe {
 	@Id
 	@GeneratedValue(generator = "seqEquipe", strategy = GenerationType.SEQUENCE)
 	private Integer id;
+	
 	@EmbeddedId
 	private EquipeKey key;
+	
 	@JsonView(Views.Common.class)
 	@Column(name = "teamname", nullable = false, unique = true, length = 200)
 	@NotEmpty
 	private String name;
+	
+	@JsonView(Views.EquipeWithRencontre.class)
+	@OneToOne(mappedBy = "equipe")
+	private Rencontre rencontre;
 
 	
 	public Equipe() {

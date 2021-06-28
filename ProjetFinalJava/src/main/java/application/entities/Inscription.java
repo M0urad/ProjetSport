@@ -22,14 +22,17 @@ public class Inscription {
 	@Id
 	@GeneratedValue(generator = "seqInscription", strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	@JsonView(Views.Common.class)
+	
+	@JsonView(Views.InscriptionWithJoueur.class)
 	@OneToOne
 	@JoinColumn(name = "id_joueur", foreignKey = @ForeignKey(name = "inscription_id_joueur_fk"))
 	private Joueur joueur;
-	@JsonView(Views.Common.class)
+	
+	@JsonView(Views.InscriptionWithRencontre.class)
 	@OneToOne
 	@JoinColumn(name = "id_rencontre", foreignKey = @ForeignKey(name = "inscription_id_rencontre_fk"))
 	private Rencontre rencontre;
+	
 	@JsonView(Views.Common.class)
 	@Column(name = "places_booked", length = 100, nullable = false)
 	private int placesReservees;

@@ -29,18 +29,22 @@ import application.views.Views;
 @Entity
 @SequenceGenerator(name = "seqRencontre", sequenceName = "seq_rencontre", initialValue = 100, allocationSize = 1)
 public class Rencontre {
+	
 	@JsonView(Views.Common.class)
 	@Id
 	@Column(name = "id_rencontre")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqRencontre")
 	private Integer id;
+	
 	@JsonView(Views.Common.class)
 	@Column(name = "nom_rencontre", length = 100, nullable = false)
 	private String name;
+	
 	@JsonView(Views.Common.class)
 	@Column(name = "date_rencontre")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
+	
 	@JsonView(Views.Common.class)
 	@Embedded
 	@AttributeOverrides({ 
@@ -50,31 +54,37 @@ public class Rencontre {
 		@AttributeOverride(name = "codePostal", column = @Column(name = "zip_code", length = 30)),
 		@AttributeOverride(name = "ville", column = @Column(name = "city", length = 200)) })
 	private Lieu lieu;
+	
 	@OneToOne
-	@JsonView(Views.Common.class)
+	@JsonView(Views.RencontreWithEquipe.class)
 	@JoinColumn(name = "id_equipe1", foreignKey = @ForeignKey(name = "rencontre_id_equipe1_fk"))
 	private Equipe equipe1;
+	
 	@OneToOne
-	@JsonView(Views.Common.class)
+	@JsonView(Views.RencontreWithEquipe.class)
 	@JoinColumn(name = "id_equipe2", foreignKey = @ForeignKey(name = "rencontre_id_equipe2_fk"))
 	private Equipe equipe2;
-	@OneToOne
-	@JsonView(Views.Common.class)
+	
+	@OneToOne(mappedBy = "rencontre")
+	@JsonView(Views.RencontreWithJoueur.class)
 	@JoinColumn(name = "id_arbitre", foreignKey = @ForeignKey(name = "rencontre_id_arbitre_fk"))
 	private Joueur arbitre;
+	
 	@JsonView(Views.Common.class)
 	@Column(name = "nombre_places", nullable = false)
 	private int nbPlaces;
-	@JsonIgnore
 	
+	@JsonIgnore
+	@OneToOne(mappedBy = "rencontre")
 	private List<Inscription> listInscription;
-	@JsonView(Views.Common.class)
+	
+	@JsonView(Views.RencontreWithJoueur.class)
 	@OneToOne
 	@JoinColumn(name = "id_proprio", foreignKey = @ForeignKey(name = "rencontre_id_proprio_fk"))
 	private Joueur proprio;
-	@OneToMany
-	@JsonIgnore
 	
+	@OneToMany(mappedBy = "rencontre")
+	@JsonIgnore
 	private List<Message> listMessages;
 
 	public Rencontre() {
