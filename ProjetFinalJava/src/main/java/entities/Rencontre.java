@@ -3,21 +3,79 @@ package entities;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Rencontre {
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import views.Views;
+
+
+@Entity
+@SequenceGenerator(name = "seqRencontre", sequenceName = "seq_rencontre", initialValue = 100, allocationSize = 1)
+
+public class Rencontre {
+	@JsonView(Views.Common.class)
+	@Id
+	@Column(name = "id_rencontre")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqRencontre")
 	private Integer id;
+	@JsonView(Views.Common.class)
+	@Column(name = "nom_rencontre", length = 100, nullable = false)
 	private String name;
+	@JsonView(Views.Common.class)
+	@Column(name = "date_rencontre")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
+	@JsonView(Views.Common.class)
+	@Embedded
+	@AttributeOverrides({ 
+		@AttributeOverride(name = "nom_lieuRencontre", column = @Column(name = "nom_lieuRencontre")),
+		@AttributeOverride(name = "numero", column = @Column(name = "street_number")),
+		@AttributeOverride(name = "rue", column = @Column(name = "street", length = 150)),
+		@AttributeOverride(name = "codePostal", column = @Column(name = "zip_code", length = 30)),
+		@AttributeOverride(name = "ville", column = @Column(name = "city", length = 200)) })
 	private Lieu lieu;
-	private Equipe list;
+	@OneToMany
+	@JsonView(Views.Common.class)
+	@JoinColumn(name = "id_equipes", foreignKey = @ForeignKey(name = "rencontre_id_equipes_fk"))
+	private Equipe equipes;
+	@OneToOne
+	@JsonView(Views.Common.class)
+	@JoinColumn(name = "id_arbitre", foreignKey = @ForeignKey(name = "rencontre_id_arbitre_fk"))
 	private Joueur arbitre;
+	@JsonView(Views.Common.class)
+	@Column(name = "nombre_places", nullable = false)
 	private int nbPlaces;
-	private List<Inscription> listInscription;
-	private Joueur proprio;
-	private List<Message> listMessages;
+	@JsonIgnore
 	
+	private List<Inscription> listInscription;
+	@JsonView(Views.Common.class)
+	@OneToOne
+	@JoinColumn(name = "id_proprio", foreignKey = @ForeignKey(name = "rencontre_id_proprio_fk"))
+	private Joueur proprio;
+	@OneToMany
+	@JsonIgnore
+	
+	private List<Message> listMessages;
+
 	public Rencontre() {
-		
+
 	}
 
 	public Rencontre(Integer id, String name, LocalDate date, Lieu lieu, Equipe list, Joueur arbitre, int nbPlaces,
@@ -26,7 +84,7 @@ public class Rencontre {
 		this.name = name;
 		this.date = date;
 		this.lieu = lieu;
-		this.list = list;
+		this.equipes = equipes;
 		this.arbitre = arbitre;
 		this.nbPlaces = nbPlaces;
 		this.listInscription = listInscription;
@@ -67,11 +125,11 @@ public class Rencontre {
 	}
 
 	public Equipe getList() {
-		return list;
+		return equipes;
 	}
 
-	public void setList(Equipe list) {
-		this.list = list;
+	public void setList(Equipe equipes) {
+		this.equipes = equipes;
 	}
 
 	public Joueur getArbitre() {
@@ -122,7 +180,7 @@ public class Rencontre {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lieu == null) ? 0 : lieu.hashCode());
-		result = prime * result + ((list == null) ? 0 : list.hashCode());
+		result = prime * result + ((equipes == null) ? 0 : equipes.hashCode());
 		result = prime * result + ((listInscription == null) ? 0 : listInscription.hashCode());
 		result = prime * result + ((listMessages == null) ? 0 : listMessages.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -160,10 +218,10 @@ public class Rencontre {
 				return false;
 		} else if (!lieu.equals(other.lieu))
 			return false;
-		if (list == null) {
-			if (other.list != null)
+		if (equipes == null) {
+			if (other.equipes != null)
 				return false;
-		} else if (!list.equals(other.list))
+		} else if (!equipes.equals(other.equipes))
 			return false;
 		if (listInscription == null) {
 			if (other.listInscription != null)
@@ -189,7 +247,7 @@ public class Rencontre {
 			return false;
 		return true;
 	}
-	
-	
-	
+
+
+
 }
