@@ -3,7 +3,7 @@ import { Joueur } from './joueur';
 export class Equipe {
   private _joueurs: Joueur[] = [];
 
-  constructor(private _id: number = 0, private _name: string = '') {}
+  constructor(private _id: number | any = null, private _name: string = '') {}
 
   /**
    * Getter joueurs

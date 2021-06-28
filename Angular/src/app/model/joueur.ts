@@ -1,11 +1,13 @@
+import { Compte } from './compte';
+
 export class Joueur {
   constructor(
-    private _id: number = 0,
+    private _id: number | any = null,
     private _nom: String = '',
     private _prenom: String = '',
-    private _numTel: number = 0,
+    private _numTel: number | any = null,
     private _poste: String = '',
-    private _compte: Compte = null
+    private _compte: Compte | any = null
   ) {}
 
   /**
