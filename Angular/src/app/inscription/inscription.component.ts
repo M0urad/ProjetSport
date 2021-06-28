@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'Inscription',
+  selector: 'inscription',
   templateUrl: './inscription.component.html',
   styleUrls: ['./inscription.component.css']
 })

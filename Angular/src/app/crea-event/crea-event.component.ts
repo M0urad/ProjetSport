@@ -14,4 +14,7 @@ export class CreaEventComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  public save(){}
+
 }

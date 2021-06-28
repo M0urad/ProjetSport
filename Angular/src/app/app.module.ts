@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { routes } from './routes';
 import { HomeComponent } from './home/home.component';
 import { ListEventComponent } from './list-event/list-event.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ListEventComponent } from './list-event/list-event.component';
     HomeComponent,
     CreaEventComponent,
     ListEventComponent,
+    InscriptionComponent,
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [],
