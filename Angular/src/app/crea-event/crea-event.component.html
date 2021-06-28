@@ -1,49 +1,54 @@
 <div name="formulaire" class="container" class="col-sm-5"></div>
-  <div class="container">
-      <h1>Formulaires d'inscription</h1>
-      <form>
-        <fieldset>
-
-  <form (ngSubmit)="ngOnInit()">
-    <div class="form-group">
-      <label>Organisateur :</label>
-      <input
-        class="form-control"
-        name="proprio"
-        readonly
-        [placeholder]="joueur.nom"
-      />
-    </div>
-    <div class="form-control">
-      <label>Donne un nom à ta rencontre :</label>
-      <input class="form-control" name="nom" placeholder="Le match du siècle" />
-    </div>
-    <div class="form-control">
-      <label>Choisis une date :</label>
-      <input class="form-control" name="date" />
-    </div>
-    <p>Adresse</p>
-    <div class="form-control">
-      <label>Numéro de voie :</label>
-      <input class="form-control" name="numero" />
-    </div>
-    <div class="form-control">
-      <label>Voie :</label>
-      <input class="form-control" name="voie" />
-    </div>
-    <div class="form-control">
-      <label>Ville :</label>
-      <input class="form-control" name="ville" />
-    </div>
-    <div class="form-control">
-      <label>Code Postal :</label>
-      <input class="form-control" name="cp" />
-    </div>
-    <div class="form-control">
-      <label>Nombre de participants à la rencontre </label>
-      <input class="form-control" name="nbPlaces" type="number" />
-    </div>
-    <button type="submit" class="btn btn-outline-info">Valider</button>
-    <a [routerLink]="['/home']"> Annuler</a>
+<div class="container">
+  <h1>Formulaires d'inscription</h1>
+  <form>
+    <fieldset>
+      <form (ngSubmit)="save()">
+        <div class="form-group">
+          <label>Organisateur :</label>
+          <input
+            class="form-control"
+            name="proprio"
+            readonly
+            [placeholder]="joueur.nom"
+          />
+        </div>
+        <div class="form-control">
+          <label>Donne un nom à ta rencontre :</label>
+          <input
+            class="form-control"
+            name="nom"
+            placeholder="Le match du siècle"
+          />
+        </div>
+        <div class="form-control">
+          <label>Choisis une date :</label>
+          <input class="form-control" name="date" />
+        </div>
+        <p>Adresse</p>
+        <div class="form-control">
+          <label>Numéro de voie :</label>
+          <input class="form-control" name="numero" />
+        </div>
+        <div class="form-control">
+          <label>Voie :</label>
+          <input class="form-control" name="voie" />
+        </div>
+        <div class="form-control">
+          <label>Ville :</label>
+          <input class="form-control" name="ville" />
+        </div>
+        <div class="form-control">
+          <label>Code Postal :</label>
+          <input class="form-control" name="cp" />
+        </div>
+        <div class="form-control">
+          <label>Nombre de participants à la rencontre </label>
+          <input class="form-control" name="nbPlaces" type="number" />
+        </div>
+        <button type="submit" class="btn btn-outline-info">Valider</button>
+        <a [routerLink]="['/home']"> Annuler</a>
+      </form>
+    </fieldset>
   </form>
-
+</div>

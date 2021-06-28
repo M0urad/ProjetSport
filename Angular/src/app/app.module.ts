@@ -8,6 +8,7 @@ import { CreaEventComponent } from './crea-event/crea-event.component';
 import { LoginComponent } from './login/login.component';
 import { routes } from './routes';
 import { HomeComponent } from './home/home.component';
+import { ListEventComponent } from './list-event/list-event.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     HomeComponent,
     CreaEventComponent,
+    ListEventComponent,
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [],
