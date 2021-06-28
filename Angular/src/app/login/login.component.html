@@ -3,18 +3,15 @@
 <div>
   Password:<input [(ngModel)]="compte.password" placeholder="Password" />
 </div>
-<button (click)="seConnecter()" class="btn btn-link">Connexion</button>
+<button (click)="seConnecter()" class="btn btn-link"> Connexion </button>
+<button [routerLink]="['/home']" routerLinkActive="active" class="btn btn-link"> Annuler </button>
 
 <hr />
-<div>
-  <a href="/home">home</a>
-</div>
+
+
 
 <div>
-  <a href="/Inscription">inscription</a>
-</div>
-
-<div>
-  <a [routerLink]="['/home']" routerLinkActive="active" >home</a>
+  Pas encore de compte ?
+  <a [routerLink]="['/home']" routerLinkActive="active">Inscription</a>
 </div>
 

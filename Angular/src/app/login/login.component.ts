@@ -7,7 +7,7 @@ import { Compte } from '../model/compte';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  compte: Compte | any = null;
+  compte: Compte = new Compte();
 
   constructor() {}
 
