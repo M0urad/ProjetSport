@@ -1,12 +1,37 @@
 package entities;
 
-public class Compte {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotEmpty;
 
-	
+import com.fasterxml.jackson.annotation.JsonView;
+
+import views.Views;
+
+
+
+@Entity
+@SequenceGenerator(name="seqCompte", sequenceName = "seq_compte", initialValue = 100, allocationSize = 1)
+public class Compte {
+	@Id
+	@GeneratedValue(generator = "seqCompte", strategy = GenerationType.SEQUENCE)
 	private Integer id;
+	@JsonView(Views.Common.class)
+	@Column(name = "login", nullable = false, unique = true, length = 200)
+	@NotEmpty
 	private String username;
+	@Column(name = "password", nullable = false, length = 200)
 	private String password;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "role", length = 50)
 	private Role role;
+	@Column(name="email", length = 50, nullable = false)
 	private String email;
 	
 	public Compte() {
