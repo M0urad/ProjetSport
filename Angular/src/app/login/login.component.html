@@ -1,0 +1,11 @@
+<h1>Page de connexion</h1>
+<div>Login: <input [(ngModel)]="compte.login" placeholder="Login" /></div>
+<div>
+  Password:<input [(ngModel)]="compte.password" placeholder="Password" />
+</div>
+<button (click)="seConnecter()">Connexion</button>
+
+<div>
+  Pas encore de compte ?
+  <a [routerLink]="['/Inscription']" routerLinkActive="active"> Inscription </a>
+</div>
