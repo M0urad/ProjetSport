@@ -4,7 +4,7 @@ export class Inscription{
   constructor(
     private _joueur: Joueur | any = null,
     private _rencontre: Rencontre | any = null,
-    private _placesReservées: number = 0
+    private _placesReservees: number = 0
   ){}
 
 
@@ -39,5 +39,23 @@ export class Inscription{
 	public set rencontre(value: Rencontre ) {
 		this._rencontre = value;
 	}
+
+
+    /**
+     * Getter placesReservees
+     * @return {number }
+     */
+	public get placesReservees(): number  {
+		return this._placesReservees;
+	}
+
+    /**
+     * Setter placesReservees
+     * @param {number } value
+     */
+	public set placesReservees(value: number ) {
+		this._placesReservees = value;
+	}
+
 
 }
