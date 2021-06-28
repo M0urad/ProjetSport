@@ -1,4 +1,8 @@
-import { NumberSymbol } from "@angular/common";
+import { Lieu } from './lieu';
+import { Equipe } from './equipe';
+import { Joueur } from './joueur';
+import { Message } from './message';
+import { Inscription } from './inscription';
 
 export class Rencontre {
 
