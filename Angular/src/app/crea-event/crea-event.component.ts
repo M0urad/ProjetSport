@@ -1,3 +1,4 @@
+import { Joueur } from './../model/joueur';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crea-event.component.css']
 })
 export class CreaEventComponent implements OnInit {
-
-  constructor() { }
+  joueur:Joueur = new Joueur();
+  constructor() {this.joueur.nom="Zizou" }
 
   ngOnInit(): void {
   }
