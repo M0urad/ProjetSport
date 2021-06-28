@@ -1,13 +1,49 @@
 package entities;
 
-public class Joueur {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
-	
+import com.fasterxml.jackson.annotation.JsonView;
+
+import views.Views;
+
+
+@Entity
+@SequenceGenerator(name = "seqJoueur", sequenceName = "seq_joueur", initialValue = 100, allocationSize = 1)
+public class Joueur {
+	@JsonView(Views.Common.class)
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqJoueur")
 	private Integer id;
+	@JsonView(Views.Common.class)
+	@Column(name = "nom", length = 100, nullable = false)
+	@NotEmpty(message = "le nom ne peut pas etre vide")
+	@Size(min = 2)
 	private String nom;
+	@JsonView(Views.Common.class)
+	@Column(name = "prenom", length = 100, nullable = false)
+	@NotEmpty(message = "le prenom ne peut pas etre vide")
+	@Size(min = 2)
 	private String prenom;
+	@JsonView(Views.Common.class)
+	@Column(name = "NumeroTelephone")
 	private int numTel;
+	@OneToOne
+	@JsonView(Views.Common.class)
+	@JoinColumn(name = "id_poste", foreignKey = @ForeignKey(name = "joueur_id_poste_fk"))
 	private String poste;
+	@OneToOne
+	@JsonView(Views.Common.class)
+	@JoinColumn(name = "id_compte", foreignKey = @ForeignKey(name = "joueur_id_compte_fk"))
 	private Compte compte;
 	
 	public Joueur() {
