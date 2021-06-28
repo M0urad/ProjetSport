@@ -1,0 +1,22 @@
+<h3>Liste de tes évènements</h3>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Organisé par</th>
+    <th>Date</th>
+    <th>Lieu</th>
+    <th>Nombre de participants</th>
+    <th></th>
+  </tr>
+
+  <tr *ngFor="let rencontre of rencontres | async">
+    <td>{{ rencontre.nom }}</td>
+    <td>{{ rencontre.organisateur }}</td>
+    <td>{{ rencontre.date }}</td>
+    <td>{{ rencontre.lieu }}</td>
+    <td>{{ rencontre.inscriptions.size }}</td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
