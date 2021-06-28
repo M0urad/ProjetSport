@@ -9,5 +9,5 @@ export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'creationEvent', component:CreaEventComponent},
-  { path: 'Inscription', component:InscriptionComponent}
+  { path: 'inscription', component:InscriptionComponent}
 ];
