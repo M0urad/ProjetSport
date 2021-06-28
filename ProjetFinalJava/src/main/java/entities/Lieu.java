@@ -13,6 +13,8 @@ import views.Views;
 @Embeddable
 public class Lieu {
 
+	@JsonView(Views.Common.class)
+	@NotEmpty
 	private String nom;
 	@JsonView(Views.Common.class)
 	@NotNull
