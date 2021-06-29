@@ -10,6 +10,7 @@ import { routes } from './routes';
 import { HomeComponent } from './home/home.component';
 import { ListEventComponent } from './list-event/list-event.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,15 @@ import { InscriptionComponent } from './inscription/inscription.component';
     CreaEventComponent,
     ListEventComponent,
     InscriptionComponent,
+
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
