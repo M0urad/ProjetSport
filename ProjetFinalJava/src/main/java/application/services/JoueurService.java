@@ -33,6 +33,15 @@ public class JoueurService {
 		}
 	}
 	
+	public void delete(Integer id) {
+		if (id != null) {
+			Optional<Joueur> opt = joueurRepository.findById(id);
+			if (opt.isPresent()) {
+				delete(opt.get());
+			}
+		}
+	}
+	
 	public List<Joueur> getAll() {
 		return joueurRepository.findAll();
 	}

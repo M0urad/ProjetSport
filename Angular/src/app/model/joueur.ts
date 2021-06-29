@@ -1,108 +1,66 @@
 import { Compte } from './compte';
+import { Role } from './role';
 
-export class Joueur {
+export class Joueur extends Compte{
   constructor(
-    private _id: number | any = null,
-    private _nom: String = '',
-    private _prenom: String = '',
-    private _numTel: number | any = null,
-    private _poste: String = '',
-    private _compte: Compte | any = null
-  ) {}
-
-  /**
-   * Getter id
-   * @return {number }
-   */
-  public get id(): number {
-    return this._id;
+    id?: number,
+    username?: string,
+    password?: string,
+    role?: Role,
+    mail?: string,
+    private _nom: string = '',
+    private _prenom: string = '',
+    private _numTel: number | any = null
+  ) {
+    super(id,username,password,role,mail);
   }
 
-  /**
-   * Getter nom
-   * @return {String }
-   */
-  public get nom(): String {
-    return this._nom;
-  }
+    /**
+     * Getter nom
+     * @return {string }
+     */
+	public get nom(): string  {
+		return this._nom;
+	}
 
-  /**
-   * Getter prenom
-   * @return {String }
-   */
-  public get prenom(): String {
-    return this._prenom;
-  }
+    /**
+     * Getter prenom
+     * @return {string }
+     */
+	public get prenom(): string  {
+		return this._prenom;
+	}
 
-  /**
-   * Getter numTel
-   * @return {number }
-   */
-  public get numTel(): number {
-    return this._numTel;
-  }
+    /**
+     * Getter numTel
+     * @return {number }
+     */
+	public get numTel(): number  {
+		return this._numTel;
+	}
 
-  /**
-   * Getter poste
-   * @return {String }
-   */
-  public get poste(): String {
-    return this._poste;
-  }
+    /**
+     * Setter nom
+     * @param {string } value
+     */
+	public set nom(value: string ) {
+		this._nom = value;
+	}
 
-  /**
-   * Getter compte
-   * @return {Compte }
-   */
-  public get compte(): Compte {
-    return this._compte;
-  }
+    /**
+     * Setter prenom
+     * @param {string } value
+     */
+	public set prenom(value: string ) {
+		this._prenom = value;
+	}
 
-  /**
-   * Setter id
-   * @param {number } value
-   */
-  public set id(value: number) {
-    this._id = value;
-  }
+    /**
+     * Setter numTel
+     * @param {number } value
+     */
+	public set numTel(value: number ) {
+		this._numTel = value;
+	}
 
-  /**
-   * Setter nom
-   * @param {String } value
-   */
-  public set nom(value: String) {
-    this._nom = value;
-  }
-
-  /**
-   * Setter prenom
-   * @param {String } value
-   */
-  public set prenom(value: String) {
-    this._prenom = value;
-  }
-
-  /**
-   * Setter numTel
-   * @param {number } value
-   */
-  public set numTel(value: number) {
-    this._numTel = value;
-  }
-
-  /**
-   * Setter poste
-   * @param {String } value
-   */
-  public set poste(value: String) {
-    this._poste = value;
-  }
-
-  /**
-   * Setter compte
-   * @param {Compte } value
-   */
-  public set compte(value: Compte) {
-    this._compte = value;
-  }
 }
