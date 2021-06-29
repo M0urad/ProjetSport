@@ -1,7 +1,7 @@
 <div name="formulaire" class="container" class="col-sm-5"></div>
 <div class="container">
   <h1>Création d'une rencontre</h1>
-  <form>
+  <form class="card container col-8">
     <fieldset>
       <form (ngSubmit)="save()">
         <div class="form-group">
@@ -13,7 +13,7 @@
             [placeholder]="joueur.nom"
           />
         </div>
-        <div class="form-control">
+        <div class="form-group">
           <label>Donne un nom à ta rencontre :</label>
           <input
             class="form-control"
@@ -21,28 +21,28 @@
             placeholder="Le match du siècle"
           />
         </div>
-        <div class="form-control">
+        <div class="form-group">
           <label>Choisis une date :</label>
           <input class="form-control" name="date" type="date" />
         </div>
         <p>Adresse</p>
-        <div class="form-control">
+        <div class="form-group">
           <label>Numéro de voie :</label>
           <input class="form-control" name="numero" />
         </div>
-        <div class="form-control">
+        <div class="form-group">
           <label>Voie :</label>
           <input class="form-control" name="voie" />
         </div>
-        <div class="form-control">
+        <div class="form-group">
           <label>Ville :</label>
           <input class="form-control" name="ville" />
         </div>
-        <div class="form-control">
+        <div class="form-group">
           <label>Code Postal :</label>
           <input class="form-control" name="cp" />
         </div>
-        <div class="form-control">
+        <div class="form-group">
           <label>Nombre de participants à la rencontre </label>
           <input class="form-control" name="nbPlaces" type="number" />
         </div>
