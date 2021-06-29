@@ -1,8 +1,18 @@
 <h1>Page de connexion</h1>
 
 <form (ngSubmit)="seConnecter()">
-  Login: <input [(ngModel)]="login" placeholder="Login" /> <br />
-  Password:<input [(ngModel)]="password" placeholder="Password" /> <br />
+  <div>
+    Login:
+    <input class="form-control" [formControl]="loginCtrl" placeholder="Login" />
+  </div>
+  <div>
+    Password:
+    <input
+      class="form-control"
+      [formControl]="passwordCtrl"
+      placeholder="Password"
+    />
+  </div>
   <button type="submit" class="btn btn-link">Connexion</button>
   <button
     [routerLink]="['/home']"
