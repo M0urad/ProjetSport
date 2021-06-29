@@ -8,67 +8,84 @@ export class Compte {
     private _mail: string = ''
   ) {}
 
-  /**
-   * Getter id
-   * @return {number }
-   */
-  public get id(): number {
-    return this._id;
-  }
+    /**
+     * Getter id
+     * @return {number }
+     */
+	public get id(): number  {
+		return this._id;
+	}
 
-  /**
-   * Getter username
-   * @return {string }
-   */
-  public get username(): string {
-    return this._username;
-  }
+    /**
+     * Getter username
+     * @return {string }
+     */
+	public get username(): string  {
+		return this._username;
+	}
 
-  /**
-   * Getter password
-   * @return {string }
-   */
-  public get password(): string {
-    return this._password;
-  }
+    /**
+     * Getter password
+     * @return {string }
+     */
+	public get password(): string  {
+		return this._password;
+	}
 
-  /**
-   * Getter mail
-   * @return {string}
-   */
-  public get mail(): string {
-    return this._mail;
-  }
+    /**
+     * Getter role
+     * @return {Role }
+     */
+	public get role(): Role  {
+		return this._role;
+	}
 
-  /**
-   * Setter id
-   * @param {number } value
-   */
-  public set id(value: number) {
-    this._id = value;
-  }
+    /**
+     * Getter mail
+     * @return {string }
+     */
+	public get mail(): string  {
+		return this._mail;
+	}
 
-  /**
-   * Setter username
-   * @param {string } value
-   */
-  public set username(value: string) {
-    this._username = value;
-  }
+    /**
+     * Setter id
+     * @param {number } value
+     */
+	public set id(value: number ) {
+		this._id = value;
+	}
 
-  /**
-   * Setter password
-   * @param {string } value
-   */
-  public set password(value: string) {
-    this._password = value;
-  }
+    /**
+     * Setter username
+     * @param {string } value
+     */
+	public set username(value: string ) {
+		this._username = value;
+	}
 
-  /**
-   * Setter mail
-   * @param {string} value
-   */
-  public set mail(value: string) {
-    this._mail = value;
-  }
+    /**
+     * Setter password
+     * @param {string } value
+     */
+	public set password(value: string ) {
+		this._password = value;
+	}
+
+    /**
+     * Setter role
+     * @param {Role } value
+     */
+	public set role(value: Role ) {
+		this._role = value;
+	}
+
+    /**
+     * Setter mail
+     * @param {string } value
+     */
+	public set mail(value: string ) {
+		this._mail = value;
+	}
+
 }
