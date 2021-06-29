@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import application.entities.Compte;
 import application.exceptions.CompteException;
+import application.exceptions.rest.CompteInvalidException;
 import application.services.CompteService;
 import application.views.Views;
 
@@ -60,8 +61,14 @@ public class CompteRestController {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Integer id) {
-		compteService.delete(id);
+	public void deleteById(@PathVariable Integer id) {
+		compteService.deleteById(id);
+	}
+	
+	@DeleteMapping("/{compte}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteById(@PathVariable Compte compte) {
+		compteService.delete(compte);
 	}
 
 	@PostMapping("")
@@ -87,9 +94,9 @@ public class CompteRestController {
 			throw new CompteInvalidException();
 		}
 		compte.setId(id);
-		if (!compte.getUtilisateur().getPassword().isEmpty()) {
-			compte.getUtilisateur().setPassword(passwordEncoder.encode(compte.getUtilisateur().getPassword()));
-		}
+//		if (!compte.getUtilisateur().getPassword().isEmpty()) {
+//			compte.getUtilisateur().setPassword(passwordEncoder.encode(compte.getUtilisateur().getPassword()));
+//		}
 		try {
 			compte = compteService.save(compte);
 		} catch (CompteException e) {

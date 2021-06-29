@@ -33,6 +33,12 @@ public class InscriptionService {
 		}
 	}
 	
+	public void deleteById(Integer id) {
+		if (id != null) {
+			inscriptionRepository.deleteById(id);
+		}
+	}
+	
 	public List<Inscription> getAll() {
 		return inscriptionRepository.findAll();
 	}

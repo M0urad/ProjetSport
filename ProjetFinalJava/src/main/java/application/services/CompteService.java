@@ -29,7 +29,13 @@ public class CompteService {
 		return compteRepository.save(compte);
 	}
 	
-	public void delete(Integer id) {
+	public void delete(Compte compte) {
+		if (compte != null) {
+			compteRepository.delete(compte);
+		}
+	}
+	
+	public void deleteById(Integer id) {
 		if (id != null) {
 			compteRepository.deleteById(id);
 		}
