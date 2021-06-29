@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
 
@@ -15,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import application.views.Views;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @SequenceGenerator(name="seqCompte", sequenceName = "seq_compte", initialValue = 100, allocationSize = 1)
 public class Compte {
 	
@@ -34,6 +37,7 @@ public class Compte {
 	@Column(name = "role", length = 50)
 	private Role role;
 	
+	@JsonView(Views.Common.class)
 	@Column(name="email", length = 50, nullable = false)
 	private String email;	
 	

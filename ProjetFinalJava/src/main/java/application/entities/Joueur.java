@@ -19,13 +19,13 @@ import application.views.Views;
 public class Joueur extends Compte{
 		
 	@JsonView(Views.Common.class)
-	@Column(name = "nom", length = 100, nullable = false)
+	@Column(name = "nom", length = 100,nullable=false)
 	@NotEmpty(message = "le nom ne peut pas etre vide")
 	@Size(min = 2)
 	private String nom;
 	
 	@JsonView(Views.Common.class)
-	@Column(name = "prenom", length = 100, nullable = false)
+	@Column(name = "prenom", length = 100, nullable=false)
 	@NotEmpty(message = "le prenom ne peut pas etre vide")
 	@Size(min = 2)
 	private String prenom;

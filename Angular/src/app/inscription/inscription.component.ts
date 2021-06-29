@@ -15,7 +15,7 @@ export class InscriptionComponent implements OnInit {
     private CompteService: CompteService,
     private aR: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.aR.params.subscribe((params) => {
@@ -30,11 +30,11 @@ export class InscriptionComponent implements OnInit {
   save() {
     if (this.compte.id) {
       this.CompteService.update(this.compte).subscribe((result) => {
-        this.router.navigate(['/compte']);
+        this.router.navigate(['/home']);
       });
     } else {
       this.CompteService.create(this.compte).subscribe((result) => {
-        this.router.navigate(['/compte']);
+        this.router.navigate(['/home']);
       });
     }
   }

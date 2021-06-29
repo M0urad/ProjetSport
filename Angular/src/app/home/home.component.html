@@ -18,6 +18,12 @@
 
   <div class="card offset-1 col-4">
     <p class="card-text">Consulte tes évènements passés et à venir !</p>
-    <a class="btn btn-warning"> Consulter </a>
+    <a
+      [routerLink]="['/listEvents']"
+      routerLinkActive="active"
+      class="btn btn-warning"
+    >
+      Consulter
+    </a>
   </div>
 </div>

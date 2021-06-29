@@ -1,6 +1,6 @@
+import { RencontreService } from './../service/rencontre.service';
 import { Rencontre } from './../model/rencontre';
-import { Router } from '@angular/router';
-import { Joueur } from './../model/joueur';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,13 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreaEventComponent implements OnInit {
   rencontre: Rencontre = new Rencontre();
-  joueur: Joueur = new Joueur();
 
-  constructor(private router: Router) {
-    this.joueur.nom = 'Zizou';
-  }
+  constructor(
+    private rencontreService: RencontreService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
-  public save() {}
+  public save() {
+    if (this.rencontre.id) {
+      this.rencontreService.update(this.rencontre).subscribe((res) => {
+        this.router.navigate(['/listEvents'], {
+          queryParams: { update: this.rencontre.id },
+        });
+      });
+    } else {
+      this.rencontreService.create(this.rencontre).subscribe((res) => {
+        this.router.navigate(['/listEvents'], {
+          queryParams: { create: res.id },
+        });
+      });
+    }
+  }
 }

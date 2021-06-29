@@ -13,7 +13,7 @@ export class LoginService {
       'Content-Type': 'application/json',
       Authorization: 'Basic ' + btoa(`${login}:${password}`),
     });
-    return this.http.get<boolean>('http://localhost:8080/boot/api/login', {
+    return this.http.get<boolean>('http://localhost:8080/boot/api/compte', {
       headers: header,
     });
   }

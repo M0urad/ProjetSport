@@ -1,23 +1,29 @@
 <nav class="navbar navbared">
   <!-- voir le css -->
   <table class="table">
-  <thead>
-  <td>
-    <a [routerLink]="['/home']" routerLinkActive="active">Accueil</a>
-  </td>
-  <td>
-    <a [routerLink]="['/login']" routerLinkActive="active">Connexion</a>
-  </td>
-  <td>
-    <a [routerLink]="['/inscription']" routerLinkActive="active">Inscription</a>
-  </td>
-  <td>
-    <a [routerLink]="['/creationEvent']" routerLinkActive="active">Créer un évènement</a>
-  </td>
-  <td>
-    <a [routerLink]="['/listEvents']" routerLinkActive="active">Consulter les évènements</a>
-  </td>
-  </thead>
-</table>
+    <thead>
+      <td>
+        <a [routerLink]="['/home']" routerLinkActive="active">Accueil</a>
+      </td>
+      <td>
+        <a [routerLink]="['/login']" routerLinkActive="active">Connexion</a>
+      </td>
+      <td>
+        <a [routerLink]="['/inscription']" routerLinkActive="active"
+          >Inscription</a
+        >
+      </td>
+      <td>
+        <a [routerLink]="['/creationEvent']" routerLinkActive="active"
+          >Créer un évènement</a
+        >
+      </td>
+      <td>
+        <a [routerLink]="['/listEvents']" routerLinkActive="active"
+          >Consulter les évènements</a
+        >
+      </td>
+    </thead>
+  </table>
 </nav>
 <router-outlet></router-outlet>
