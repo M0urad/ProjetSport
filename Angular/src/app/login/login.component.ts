@@ -1,5 +1,6 @@
+import { LoginService } from './../service/login.service';
 import { Component, OnInit } from '@angular/core';
-import { Compte } from '../model/compte';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -7,17 +8,27 @@ import { Compte } from '../model/compte';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  compte: Compte = new Compte();
+  login: string = '';
+  password: string = '';
+  message: string = '';
 
-  constructor() {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  public seConnecter() {
-    if (this.compte) {
-      // Si ce compte existe, alors on redirige l'utilisateur sur la page home mais avec les différentes vues
-    } else {
-      // Si le compte n'existe pas, message d'erreur
-    }
+  seConnecter() {
+    this.loginService.login(this.login, this.password).subscribe(
+      (result) => {
+        localStorage.setItem('login', this.login);
+        localStorage.setItem(
+          'auth',
+          'Basic ' + btoa(this.login + ':' + this.password)
+        );
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        this.message = 'infos incorrect';
+      }
+    );
   }
 }
