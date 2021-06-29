@@ -26,10 +26,6 @@ import application.exceptions.JoueurException;
 import application.exceptions.rest.JoueurInvalidException;
 import application.services.JoueurService;
 import application.views.Views;
-import formation.sopra.springBoot.entities.Client;
-import formation.sopra.springBoot.entities.Joueur;
-import formation.sopra.springBoot.exceptions.ClientException;
-import formation.sopra.springBoot.exceptions.rest.ClientInvalidException;
 
 @RestController
 @RequestMapping("/api/joueur")
@@ -89,7 +85,7 @@ public class JoueurRestController {
 			throw new JoueurInvalidException();
 		}
 		try {
-			joueur.getUtilisateur().setPassword(passwordEncoder.encode(joueur.getUtilisateur().getPassword()));
+//			joueur.getUtilisateur().setPassword(passwordEncoder.encode(joueur.getUtilisateur().getPassword()));
 			joueur = joueurService.save(joueur);
 		} catch (JoueurException e) {
 			throw new JoueurInvalidException();
@@ -103,10 +99,10 @@ public class JoueurRestController {
 		if (br.hasErrors()) {
 			throw new JoueurInvalidException();
 		}
-		client.setId(id);
-		if (!client.getUtilisateur().getPassword().isEmpty()) {
-			client.getUtilisateur().setPassword(passwordEncoder.encode(client.getUtilisateur().getPassword()));
-		}
+//		client.setId(id);
+//		if (!client.getUtilisateur().getPassword().isEmpty()) {
+//			client.getUtilisateur().setPassword(passwordEncoder.encode(client.getUtilisateur().getPassword()));
+//		}
 		try {
 			client = joueurService.save(client);
 		} catch (JoueurException e) {

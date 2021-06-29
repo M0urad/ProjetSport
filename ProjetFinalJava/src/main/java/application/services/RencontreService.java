@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import application.entities.Joueur;
 import application.entities.Rencontre;
 import application.exceptions.RencontreException;
 import application.repositories.RencontreRepository;
@@ -30,6 +31,15 @@ public class RencontreService {
 	public void delete(Rencontre rencontre) {
 		if (rencontre != null) {
 			rencontreRepository.delete(rencontre);
+		}
+	}
+	
+	public void delete(Integer id) {
+		if (id != null) {
+			Optional<Rencontre> opt = rencontreRepository.findById(id);
+			if (opt.isPresent()) {
+				delete(opt.get());
+			}
 		}
 	}
 	
