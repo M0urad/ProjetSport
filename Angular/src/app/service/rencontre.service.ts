@@ -13,6 +13,7 @@ export class RencontreService {
   constructor(private http: HttpClient) {}
 
   private initHeader() {
+    const auth = localStorage.getItem('auth');
     this.httpHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Basic ' + btoa('admin:admin123'),

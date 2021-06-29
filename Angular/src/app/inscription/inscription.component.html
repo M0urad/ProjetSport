@@ -1,7 +1,7 @@
 <div name="formulaire" class="container" class="col-sm-5">
   <div class="container">
     <h1>Formulaires d'inscription</h1>
-    <form>
+    <form (ngSubmit)="save()">
       <fieldset>
         <div class="form-group">
           <label>Login :</label>
@@ -36,13 +36,7 @@
           <input
             class="form-control" name="telephone" placeholder="Telephone" [formControl]="telephoneCtrl"/>
         </div>
-        <button
-          [routerLink]="['/home']"
-          routerLinkActive="active"
-          class="btn btn-outline-info"
-        >
-          Valider
-        </button>
+        <button class="btn btn-outline-info" type="submit">Valider</button>
         <button
           [routerLink]="['/home']"
           routerLinkActive="active"

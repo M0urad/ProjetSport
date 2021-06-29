@@ -83,11 +83,11 @@ export class InscriptionComponent implements OnInit {
     );
     if (this.compte.id) {
       this.CompteService.update(this.compte).subscribe((result) => {
-        this.router.navigate(['/compte']);
+        this.router.navigate(['/home']);
       });
     } else {
       this.CompteService.create(this.compte).subscribe((result) => {
-        this.router.navigate(['/compte']);
+        this.router.navigate(['/home']);
       });
     }
   }
