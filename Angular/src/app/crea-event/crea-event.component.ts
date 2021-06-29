@@ -13,6 +13,7 @@ export class CreaEventComponent implements OnInit {
     this.joueur.nom = 'Zizou';
   }
 
+
   ngOnInit(): void {}
 
   public save(){}
