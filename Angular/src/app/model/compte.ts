@@ -2,7 +2,7 @@ import { Role } from './role';
 export class Compte {
   constructor(
     private _id: number | any = null,
-    private _username: string = '',
+    private _login: string = '',
     private _password: string = '',
     private _role: Role | any = null,
     private _mail: string = ''
@@ -17,11 +17,11 @@ export class Compte {
 	}
 
     /**
-     * Getter username
+     * Getter login
      * @return {string }
      */
-	public get username(): string  {
-		return this._username;
+	public get login(): string  {
+		return this._login;
 	}
 
     /**
@@ -57,11 +57,11 @@ export class Compte {
 	}
 
     /**
-     * Setter username
+     * Setter login
      * @param {string } value
      */
-	public set username(value: string ) {
-		this._username = value;
+	public set login(value: string ) {
+		this._login = value;
 	}
 
     /**

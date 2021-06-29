@@ -1,3 +1,4 @@
+import { InscriptionComponent } from './inscription/inscription.component';
 import { NgModule } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { routes } from './routes';
 import { HomeComponent } from './home/home.component';
 import { ListEventComponent } from './list-event/list-event.component';
-import { InscriptionComponent } from './inscription/inscription.component';
+
+
 
 @NgModule({
   declarations: [
@@ -19,13 +21,16 @@ import { InscriptionComponent } from './inscription/inscription.component';
     CreaEventComponent,
     ListEventComponent,
     InscriptionComponent,
+
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
