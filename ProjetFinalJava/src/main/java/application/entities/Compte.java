@@ -7,7 +7,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
 
@@ -36,19 +35,13 @@ public class Compte {
 	private Role role;
 	
 	@Column(name="email", length = 50, nullable = false)
-	private String email;
-	
-	@OneToOne(mappedBy = "compte")
-	@JsonView(Views.CompteWithJoueur.class)
-	private Joueur joueur;
-	
-	
+	private String email;	
 	
 	public Compte() {
 		
 	}
 
-	public Compte(Integer id, String username, String password, Role role, String email) {
+	public Compte(Integer id, @NotEmpty String username, String password, Role role, String email) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -59,6 +52,7 @@ public class Compte {
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -66,6 +60,7 @@ public class Compte {
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -73,6 +68,7 @@ public class Compte {
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -80,6 +76,7 @@ public class Compte {
 	public Role getRole() {
 		return role;
 	}
+
 	public void setRole(Role role) {
 		this.role = role;
 	}
@@ -87,6 +84,7 @@ public class Compte {
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -136,6 +134,7 @@ public class Compte {
 			return false;
 		return true;
 	}
+
 	
 	
 	

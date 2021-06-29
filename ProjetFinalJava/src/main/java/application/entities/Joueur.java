@@ -1,16 +1,10 @@
 package application.entities;
 
-import java.nio.MappedByteBuffer;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -22,13 +16,8 @@ import application.views.Views;
 
 @Entity
 @SequenceGenerator(name = "seqJoueur", sequenceName = "seq_joueur", initialValue = 100, allocationSize = 1)
-public class Joueur {
-	
-	@JsonView(Views.Common.class)
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqJoueur")
-	private Integer id;
-	
+public class Joueur extends Compte{
+		
 	@JsonView(Views.Common.class)
 	@Column(name = "nom", length = 100, nullable = false)
 	@NotEmpty(message = "le nom ne peut pas etre vide")
@@ -45,121 +34,126 @@ public class Joueur {
 	@Column(name = "NumeroTelephone")
 	private int numTel;
 	
-	@OneToOne
 	@JsonView(Views.Common.class)
-	@JoinColumn(name = "id_poste", foreignKey = @ForeignKey(name = "joueur_id_poste_fk"))
+	@Column(name = "poste")
 	private String poste;
 	
-	@OneToOne
-	@JsonView(Views.JoueurWithCompte.class)
-	@JoinColumn(name = "id_compte", foreignKey = @ForeignKey(name = "joueur_id_compte_fk"))
-	private Compte compte;
-	
 	@JsonView(Views.JoueurWithRencontre.class)
-	@OneToOne(mappedBy = "Joueur")
-	private Rencontre rencontre;
+	@OneToMany(mappedBy = "proprio")
+	private List<Rencontre> rencontre;
 	
-	aa
-	@OneToMany(mappedBy = "joueur")
-	private EquipeKey key;
-	
-	@OneToOne(mappedBy = "joueur")
+	@OneToMany(mappedBy = "key.joueur")
 	@JsonView(Views.InscriptionWithJoueur.class)
-	private Inscription inscription;
+	private List<Inscription> inscription;
 	
 	@OneToMany(mappedBy = "joueur")
-	private Message message;
+	@JsonView(Views.MessageWithJoueur.class)
+	private List<Message> message;
 	
 	public Joueur() {
 		
 	}
-	public Joueur(Integer id, String nom, String prenom, int numTel) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.numTel = numTel;
-	}
-	public Joueur(Integer id, String nom, String prenom, int numTel, String poste, Compte compte) {
-		this.id = id;
+
+	public Joueur(@NotEmpty(message = "le nom ne peut pas etre vide") @Size(min = 2) String nom,
+			@NotEmpty(message = "le prenom ne peut pas etre vide") @Size(min = 2) String prenom, int numTel,
+			String poste, List<Rencontre> rencontre, List<Inscription> inscription, List<Message> message) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.numTel = numTel;
 		this.poste = poste;
-		this.compte = compte;
+		this.rencontre = rencontre;
+		this.inscription = inscription;
+		this.message = message;
 	}
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
+
 	public String getNom() {
 		return nom;
 	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
+
 	public String getPrenom() {
 		return prenom;
 	}
+
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	
+
 	public int getNumTel() {
 		return numTel;
 	}
+
 	public void setNumTel(int numTel) {
 		this.numTel = numTel;
 	}
-	
+
 	public String getPoste() {
 		return poste;
 	}
+
 	public void setPoste(String poste) {
 		this.poste = poste;
 	}
-	
-	public Compte getCompte() {
-		return compte;
+
+	public List<Rencontre> getRencontre() {
+		return rencontre;
 	}
-	public void setCompte(Compte compte) {
-		this.compte = compte;
+
+	public void setRencontre(List<Rencontre> rencontre) {
+		this.rencontre = rencontre;
 	}
-	
+
+	public List<Inscription> getInscription() {
+		return inscription;
+	}
+
+	public void setInscription(List<Inscription> inscription) {
+		this.inscription = inscription;
+	}
+
+	public List<Message> getMessage() {
+		return message;
+	}
+
+	public void setMessage(List<Message> message) {
+		this.message = message;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((compte == null) ? 0 : compte.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		int result = super.hashCode();
+		result = prime * result + ((inscription == null) ? 0 : inscription.hashCode());
+		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + numTel;
 		result = prime * result + ((poste == null) ? 0 : poste.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((rencontre == null) ? 0 : rencontre.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Joueur other = (Joueur) obj;
-		if (compte == null) {
-			if (other.compte != null)
+		if (inscription == null) {
+			if (other.inscription != null)
 				return false;
-		} else if (!compte.equals(other.compte))
+		} else if (!inscription.equals(other.inscription))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (message == null) {
+			if (other.message != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!message.equals(other.message))
 			return false;
 		if (nom == null) {
 			if (other.nom != null)
@@ -178,10 +172,14 @@ public class Joueur {
 				return false;
 		} else if (!prenom.equals(other.prenom))
 			return false;
+		if (rencontre == null) {
+			if (other.rencontre != null)
+				return false;
+		} else if (!rencontre.equals(other.rencontre))
+			return false;
 		return true;
 	}
-	
-	
+		
 	
 	
 	

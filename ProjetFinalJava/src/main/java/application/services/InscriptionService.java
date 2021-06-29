@@ -18,9 +18,9 @@ public class InscriptionService {
 	
 	
 	public Inscription save(Inscription inscription) throws InscriptionException {
-		if (inscription.getJoueur() == null) {
-			throw new InscriptionException("Joueur obligatoire");
-		}
+//		if (inscription.getJoueur() == null) {
+//			throw new InscriptionException("Joueur obligatoire");
+//		}
 		if (inscription.getPlacesReservees() == 0) {
 			throw new InscriptionException("Pas de nombres de places réservées pour cette inscription");
 		}

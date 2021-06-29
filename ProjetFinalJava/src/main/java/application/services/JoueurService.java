@@ -21,9 +21,9 @@ public class JoueurService {
 		if (joueur.getNom() == null || joueur.getNom().isEmpty()) {
 			throw new JoueurException("Nom obligatoire");
 		}
-		if (joueur.getCompte() == null) {
-			throw new JoueurException("Pas de compte pour ce joueur");
-		}
+//		if (joueur.getCompte() == null) {
+//			throw new JoueurException("Pas de compte pour ce joueur");
+//		}
 		return joueurRepository.save(joueur);
 	}
 	
