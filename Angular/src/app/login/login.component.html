@@ -1,14 +1,21 @@
 <h1>Page de connexion</h1>
 
-<div>Login: <input [(ngModel)]="compte.username" placeholder="Login" /></div>
-<div>
-  Password:<input [(ngModel)]="compte.password" placeholder="Password" />
-</div>
-<button (click)="seConnecter()" class="btn btn-link"> Connexion </button>
-<button [routerLink]="['/home']" routerLinkActive="active" class="btn btn-link"> Annuler </button>
+<form (ngSubmit)="seConnecter()">
+  Login: <input [(ngModel)]="login" placeholder="Login" /> <br />
+  Password:<input [(ngModel)]="password" placeholder="Password" /> <br />
+  <button type="submit" class="btn btn-link">Connexion</button>
+  <button
+    [routerLink]="['/home']"
+    routerLinkActive="active"
+    class="btn btn-link"
+  >
+    Annuler
+  </button>
+  <div>{{ message }}</div>
+</form>
 
 <div>
   Pas encore de compte ?
-  <a [routerLink]="['/inscription']" routerLinkActive="active"> S'inscrire </a>
+  <a [routerLink]="['/inscription']" routerLinkActive="active"> S'inscrire </a
+  ><br />
 </div>
-

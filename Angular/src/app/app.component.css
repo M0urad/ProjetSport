@@ -1,11 +1,7 @@
-.navbared{
-  background-color: #E3D494;
+.navbared {
+  background-color: #e3d494;
   color: white; /* La couleur des liens se change autrement */
-  height:60px;
+  height: 60px;
   padding-top: 15px;
   padding-left: 150px;
 }
-
-/*{
-  margin-left: 10px;
-}*/
