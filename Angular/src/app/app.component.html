@@ -6,20 +6,34 @@
         <a [routerLink]="['/home']" routerLinkActive="active">Accueil</a>
       </td>
       <td>
-        <a [routerLink]="['/login']" routerLinkActive="active">Connexion</a>
+        <a
+          *ngIf="!isLogged()"
+          [routerLink]="['/login']"
+          routerLinkActive="active"
+          >Connexion</a
+        >
       </td>
       <td>
-        <a [routerLink]="['/inscription']" routerLinkActive="active"
+        <a
+          *ngIf="!isLogged()"
+          [routerLink]="['/inscription']"
+          routerLinkActive="active"
           >Inscription</a
         >
       </td>
       <td>
-        <a [routerLink]="['/creationEvent']" routerLinkActive="active"
+        <a
+          *ngIf="isLogged()"
+          [routerLink]="['/creationEvent']"
+          routerLinkActive="active"
           >Créer un évènement</a
         >
       </td>
       <td>
-        <a [routerLink]="['/listEvents']" routerLinkActive="active"
+        <a
+          *ngIf="isLogged()"
+          [routerLink]="['/listEvents']"
+          routerLinkActive="active"
           >Consulter les évènements</a
         >
       </td>

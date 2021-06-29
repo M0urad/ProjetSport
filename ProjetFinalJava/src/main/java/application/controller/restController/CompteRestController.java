@@ -76,6 +76,7 @@ public class CompteRestController {
 	@JsonView(Views.Common.class)
 	public Compte create(@RequestBody @Valid Compte compte, BindingResult br) {
 		if (br.hasErrors()) {
+			System.out.println(br);
 			throw new CompteInvalidException();
 		}
 		try {

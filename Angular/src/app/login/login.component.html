@@ -1,16 +1,21 @@
 <h1>Page de connexion</h1>
 
 <form (ngSubmit)="seConnecter()">
-  <div>
-    Login:
-    <input class="form-control" [formControl]="loginCtrl" placeholder="Login" />
+  <div class="form-group">
+    <label>Login:</label>
+    <input
+      class="form-control"
+      [formControl]="usernameCtrl"
+      placeholder="Login"
+    />
   </div>
-  <div>
-    Password:
+  <div class="form-group">
+    <label>Password:</label>
     <input
       class="form-control"
       [formControl]="passwordCtrl"
       placeholder="Password"
+      type="password"
     />
   </div>
   <button type="submit" class="btn btn-link">Connexion</button>
