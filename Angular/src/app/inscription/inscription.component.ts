@@ -1,6 +1,6 @@
+import { Joueur } from './../model/joueur';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { Compte } from './../model/compte';
-import { CompteService } from './../service/compte.service';
+import { JoueurService } from './../service/joueur.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -19,10 +19,10 @@ export class InscriptionComponent implements OnInit {
   telephoneCtrl: FormControl;
   form: FormGroup;
 
-  compte: Compte = new Compte();
+  Joueur: Joueur = new Joueur();
 
   constructor(
-    private CompteService: CompteService,
+    private JoueurService: JoueurService,
     private aR: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
@@ -62,31 +62,32 @@ export class InscriptionComponent implements OnInit {
   ngOnInit(): void {
     this.aR.params.subscribe((params) => {
       if (params.id) {
-        this.CompteService.get(params.id).subscribe((data) => {
-          this.compte = data;
-          this.loginCtrl.setValue(this.compte.login);
-          this.passwordCtrl.setValue(this.compte.password);
-          this.mailCtrl.setValue(this.compte.mail);
+        this.JoueurService.get(params.id).subscribe((data) => {
+          this.Joueur = data;
+          this.loginCtrl.setValue(this.Joueur.login);
+          this.passwordCtrl.setValue(this.Joueur.password);
+          this.mailCtrl.setValue(this.Joueur.mail);
+          this.telephoneCtrl.setValue(this.Joueur.numTel)
+          this.nomCtrl.setValue(this.Joueur.nom)
+          this.prenomCtrl.setValue(this.Joueur.prenom)
         });
       }
     });
   }
 
   save() {
-    this.compte = new Compte(
+    this.Joueur = new Joueur(
       this.loginCtrl.value,
       this.passwordCtrl.value,
       this.prenomCtrl.value,
       this.nomCtrl.value,
-
-
     );
-    if (this.compte.id) {
-      this.CompteService.update(this.compte).subscribe((result) => {
+    if (this.Joueur.id) {
+      this.JoueurService.update(this.Joueur).subscribe((result) => {
         this.router.navigate(['/home']);
       });
     } else {
-      this.CompteService.create(this.compte).subscribe((result) => {
+      this.JoueurService.create(this.Joueur).subscribe((result) => {
         this.router.navigate(['/home']);
       });
     }

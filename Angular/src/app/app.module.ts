@@ -1,3 +1,4 @@
+import { InscriptionComponent } from './inscription/inscription.component';
 import { NgModule } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,8 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { routes } from './routes';
 import { HomeComponent } from './home/home.component';
 import { ListEventComponent } from './list-event/list-event.component';
-import { InscriptionComponent } from './inscription/inscription.component';
-import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
