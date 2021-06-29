@@ -1,5 +1,101 @@
 package application.controller.restController;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import application.entities.Compte;
+import application.exceptions.CompteException;
+import application.services.CompteService;
+import application.views.Views;
+
+@RestController
+@RequestMapping("/api/compte")
+@CrossOrigin(origins = "*")
 public class CompteRestController {
 
+	@Autowired
+	private CompteService compteService;
+
+	@GetMapping("")
+	@JsonView(Views.Common.class)
+	public List<Compte> getAllCompte() {
+		return getAll();
+	}
+
+	private List<Compte> getAll() {
+		return compteService.getAll();
+	}
+
+	@GetMapping("/{id}")
+	@JsonView(Views.Common.class)
+	public Compte getCompteById(@PathVariable Integer id) {
+		return getById(id);
+	}
+
+	private Compte getById(Integer id) {
+		Compte compte = compteService.getById(id);
+		if (compte.getId() == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		return compte;
+	}
+	
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable Integer id) {
+		compteService.delete(id);
+	}
+
+	@PostMapping("")
+	@ResponseStatus(HttpStatus.CREATED)
+	@JsonView(Views.Common.class)
+	public Compte create(@RequestBody @Valid Compte compte, BindingResult br) {
+		if (br.hasErrors()) {
+			throw new CompteInvalidException();
+		}
+		try {
+			//compte.getUtilisateur().setPassword(passwordEncoder.encode(compte.getUtilisateur().getPassword()));
+			compte = compteService.save(compte);
+		} catch (CompteException e) {
+			throw new CompteInvalidException();
+		}
+		return compte;
+	}
+
+	@PutMapping("/{id}")
+	@JsonView(Views.Common.class)
+	public Compte update(@RequestBody @Valid Compte compte, BindingResult br, @PathVariable Integer id) {
+		if (br.hasErrors()) {
+			throw new CompteInvalidException();
+		}
+		compte.setId(id);
+		if (!compte.getUtilisateur().getPassword().isEmpty()) {
+			compte.getUtilisateur().setPassword(passwordEncoder.encode(compte.getUtilisateur().getPassword()));
+		}
+		try {
+			compte = compteService.save(compte);
+		} catch (CompteException e) {
+			throw new CompteInvalidException();
+		}
+		return compte;
+	}
+	
 }
