@@ -4,16 +4,20 @@
   <a [routerLink]="['/login']" routerLinkActive="active"> Se Connecter</a>
 </div>
 
-<div>
-  <a
-    class="badge badge-success"
-    [routerLink]="['/creationEvent']"
-    routerLinkActive="active"
-  >
-    Organise ta rencontre !</a
-  >
-</div>
+<div class="row">
+  <div class="card offset-1 col-4">
+    <p class="card-text">Organise ta rencontre !</p>
+    <a
+      class="btn btn-warning"
+      [routerLink]="['/creationEvent']"
+      routerLinkActive="active"
+    >
+      Organiser</a
+    >
+  </div>
 
-<div>
-  <a class="badge badge-info"> Consulte tes rencontres </a>
+  <div class="card offset-1 col-4">
+    <p class="card-text">Consulte tes évènements passés et à venir !</p>
+    <a class="btn btn-warning"> Consulter </a>
+  </div>
 </div>
