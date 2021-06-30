@@ -39,10 +39,7 @@
       </td>
 
       <td>
-        <a
-          *ngIf="isLogged()"
-          >Bienvenue</a
-        >
+        <a *ngIf="isLogged()">Bienvenue {{ message }}</a>
       </td>
     </thead>
   </table>

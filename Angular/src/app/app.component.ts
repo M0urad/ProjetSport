@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from './service/login.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Angular';
+  message: String = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {
+    this.loginService.login, (this.message = '');
+  }
 
   isLogged(): boolean {
     return localStorage.getItem('login') ? true : false;
