@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./inscription.component.css'],
 })
 export class InscriptionComponent implements OnInit {
-  loginCtrl: FormControl;
+  usernameCtrl: FormControl;
   passwordCtrl: FormControl;
   nomCtrl: FormControl;
   prenomCtrl: FormControl;
@@ -27,16 +27,16 @@ export class InscriptionComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
-    this.loginCtrl = fb.control('');
-    this.passwordCtrl = fb.control('');
-    this.nomCtrl = fb.control('');
-    this.prenomCtrl = fb.control('');
-    this.dateCtrl = fb.control('');
-    this.mailCtrl = fb.control('');
-    this.telephoneCtrl = fb.control('');
+    this.usernameCtrl=fb.control('')
+    this.passwordCtrl=fb.control('')
+    this.nomCtrl=fb.control('')
+    this.prenomCtrl=fb.control('')
+    this.dateCtrl=fb.control('')
+    this.mailCtrl=fb.control('')
+    this.telephoneCtrl=fb.control('')
 
     this.form = fb.group({
-      login: this.loginCtrl,
+      login: this.usernameCtrl,
       password: this.passwordCtrl,
       nom: this.nomCtrl,
       prenom: this.prenomCtrl,
@@ -48,7 +48,7 @@ export class InscriptionComponent implements OnInit {
 
   submit() {
     console.log(this.form);
-    console.log(this.loginCtrl.value);
+    console.log(this.usernameCtrl.value);
     console.log(this.passwordCtrl.value);
     console.log(this.nomCtrl.value);
     console.log(this.prenomCtrl.value);
@@ -62,7 +62,7 @@ export class InscriptionComponent implements OnInit {
       if (params.id) {
         this.JoueurService.get(params.id).subscribe((data) => {
           this.Joueur = data;
-          this.loginCtrl.setValue(this.Joueur.id);
+          this.usernameCtrl.setValue(this.Joueur.login);
           this.passwordCtrl.setValue(this.Joueur.password);
           this.mailCtrl.setValue(this.Joueur.mail);
           this.telephoneCtrl.setValue(this.Joueur.numTel);
@@ -75,10 +75,13 @@ export class InscriptionComponent implements OnInit {
 
   save() {
     this.Joueur = new Joueur(
-      this.loginCtrl.value,
+      this.usernameCtrl.value,
       this.passwordCtrl.value,
       this.prenomCtrl.value,
-      this.nomCtrl.value
+      this.nomCtrl.value,
+      this.dateCtrl.value,
+      this.mailCtrl.value,
+      this.telephoneCtrl.value
     );
     if (this.Joueur.id) {
       this.JoueurService.update(this.Joueur).subscribe((result) => {
