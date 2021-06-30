@@ -16,7 +16,7 @@ export class RencontreService {
     const auth = localStorage.getItem('auth');
     this.httpHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + btoa('admin:admin123'),
+      Authorization: auth ? auth : '',
     });
   }
 
@@ -40,7 +40,7 @@ export class RencontreService {
   }
 
   public create(rencontre: Rencontre): Observable<Rencontre> {
-    //this.initHeader();
+    this.initHeader();
     const rencontreFormatee = {
       nom: rencontre.nom,
       date: rencontre.date,
@@ -57,7 +57,7 @@ export class RencontreService {
     return this.http.post<Rencontre>(
       RencontreService.URL,
       rencontreFormatee,
-      {}
+      {headers: this.httpHeader}
     );
   }
 
