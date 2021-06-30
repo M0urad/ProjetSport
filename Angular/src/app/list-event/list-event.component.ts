@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import { Rencontre } from '../model/rencontre';
 import { JoueurService } from '../service/joueur.service';
 import { Compte } from '../model/compte';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-event',
@@ -20,37 +22,36 @@ export class ListEventComponent implements OnInit {
   inscription: Inscription = new Inscription();
   place: number = 0;
   compte: Compte = new Compte();
+  placesReserveesCtrl: FormControl;
 
   constructor(
     private rencontreService: RencontreService,
     private joueurService: JoueurService,
-    private compteService: CompteService
-  ) {}
+    private compteService: CompteService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+    this.placesReserveesCtrl = this.fb.control('', Validators.required);
+  }
 
   ngOnInit(): void {
     this.rencontres = this.rencontreService.getAll();
-
   }
 
   delete(id: number) {
     this.rencontreService.delete(id).subscribe((result) => {
       this.rencontres = this.rencontreService.getAll();
     });
-
   }
 
   insc(id_rencontre: number) {
-    this.joueur = this.joueurService.getByLogin(localStorage.getItem('login'));
-    this.inscription = new Inscription( // inscription contient les objets joueur et rencontre alors que la bdd contient les id des deux
-      this.joueur,
-      this.rencontreService.get(id_rencontre),
-      this.place
-    );
-    // manque le save inscription
+    this.inscription.placesReservees = this.placesReserveesCtrl.value;
+    // this.InscriptionService.create(this.inscription).subscribe((result) => {
+    //   this.router.navigate(['/home']);
+    // });
   }
 
   isAdmin(): boolean {
-    this.compte = this.compteService.getByLogin(localStorage.getItem('login')); // Compte ou Joueur et renvoie un Observable
     if (this.compte.role == 'ROLE_ADMIN') {
       return true;
     } else {

@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,11 +22,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import application.config.CompteSpring;
 import application.entities.Inscription;
 import application.entities.InscriptionKey;
+import application.entities.Joueur;
 import application.exceptions.InscriptionException;
 import application.exceptions.rest.InscriptionInvalidException;
 import application.services.InscriptionService;
+import application.services.RencontreService;
 import application.views.Views;
 
 @RestController
@@ -35,6 +39,8 @@ public class InscriptionRestController {
 	
 	@Autowired
 	private InscriptionService inscriptionService;
+	@Autowired
+	private RencontreService rencontreService;
 
 	@GetMapping("")
 	@JsonView(Views.Common.class)
@@ -72,15 +78,19 @@ public class InscriptionRestController {
 		inscriptionService.delete(inscription);
 	}
 
-	@PostMapping("")
+	@PostMapping("/inscKey{inscription}_renc{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	@JsonView(Views.Common.class)
-	public Inscription create(@RequestBody @Valid Inscription inscription, BindingResult br) {
+	public Inscription create(@RequestBody @Valid Inscription inscription, BindingResult br, @AuthenticationPrincipal CompteSpring compteSpring,@RequestBody @Valid Integer id) {
 		if (br.hasErrors()) {
 			throw new InscriptionInvalidException();
 		}
 		try {
 			//inscription.getUtilisateur().setPassword(passwordEncoder.encode(inscription.getUtilisateur().getPassword()));
+			InscriptionKey inscKey= new InscriptionKey( );
+			inscKey.setJoueur((Joueur)compteSpring.getCompte());
+			inscKey.setRencontre(rencontreService.getById(id));
+			inscription.setKey(inscKey);
 			
 			inscription = inscriptionService.save(inscription);
 		} catch (InscriptionException e) {
