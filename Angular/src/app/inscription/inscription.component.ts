@@ -1,3 +1,4 @@
+import { Role } from './../model/role';
 import { Joueur } from './../model/joueur';
 import {
   FormControl,
@@ -75,6 +76,7 @@ export class InscriptionComponent implements OnInit {
       this.idCtrl.value,
       this.usernameCtrl.value,
       this.passwordCtrl.value,
+      Role.USER,
       this.mailCtrl.value,
       this.nomCtrl.value,
       this.prenomCtrl.value,
