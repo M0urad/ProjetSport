@@ -44,10 +44,15 @@ export class JoueurService {
   public create(joueur: Joueur): Observable<Joueur> {
     this.initHeader();
     const joueurFormate = {
+      id: joueur.id,
+      username: joueur.username,
+      password: joueur.password,
+      mail: joueur.mail,
       nom: joueur.nom,
       prenom: joueur.prenom,
       numTel: joueur.numTel,
     };
+    console.log(joueurFormate);
     return this.http.post<Joueur>(JoueurService.URL, joueurFormate, {
       headers: this.httpHeader,
     });
