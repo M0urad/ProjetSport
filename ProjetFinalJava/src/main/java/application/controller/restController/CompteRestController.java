@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +35,8 @@ public class CompteRestController {
 
 	@Autowired
 	private CompteService compteService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("")
 	@JsonView(Views.Common.class)
@@ -80,7 +83,7 @@ public class CompteRestController {
 			throw new CompteInvalidException();
 		}
 		try {
-			//compte.getUtilisateur().setPassword(passwordEncoder.encode(compte.getUtilisateur().getPassword()));
+			compte.setPassword(passwordEncoder.encode(compte.getPassword()));
 			compte = compteService.save(compte);
 		} catch (CompteException e) {
 			throw new CompteInvalidException();
@@ -95,9 +98,9 @@ public class CompteRestController {
 			throw new CompteInvalidException();
 		}
 		compte.setId(id);
-//		if (!compte.getUtilisateur().getPassword().isEmpty()) {
-//			compte.getUtilisateur().setPassword(passwordEncoder.encode(compte.getUtilisateur().getPassword()));
-//		}
+		if (!compte.getPassword().isEmpty()) {
+			compte.setPassword(passwordEncoder.encode(compte.getPassword()));
+		}
 		try {
 			compte = compteService.save(compte);
 		} catch (CompteException e) {

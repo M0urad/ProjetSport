@@ -13,7 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import formation.sopra.springBoot.services.AuthService;
+import application.services.AuthService;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -38,23 +38,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				.authorizeRequests()
 					.antMatchers(HttpMethod.OPTIONS).anonymous()
-					.antMatchers("/api/fournisseur","/api/fournisseur/**").hasRole("ADMIN")
-					.antMatchers(HttpMethod.POST,"/api/commande").hasRole("USER")
-					.antMatchers("/api/commande","/api/commande/**").authenticated()
-					.antMatchers(HttpMethod.POST,"/api/client").anonymous()
-					.antMatchers(HttpMethod.POST,"/api/produit").hasRole("ADMIN")
-					.antMatchers(HttpMethod.PUT,"/api/produit/**").hasRole("ADMIN")
-					.antMatchers(HttpMethod.DELETE,"/api/produit/**").hasRole("ADMIN")
+//					.antMatchers("/api/fournisseur","/api/fournisseur/**").hasRole("ADMIN")
+//					.antMatchers(HttpMethod.POST,"/api/commande").hasRole("USER")
+//					.antMatchers("/api/commande","/api/commande/**").authenticated()
+//					.antMatchers(HttpMethod.POST,"/api/client").anonymous()
+//					.antMatchers(HttpMethod.POST,"/api/produit").hasRole("ADMIN")
+//					.antMatchers(HttpMethod.PUT,"/api/produit/**").hasRole("ADMIN")
+//					.antMatchers(HttpMethod.DELETE,"/api/produit/**").hasRole("ADMIN")
 					.antMatchers("/api","/api/**").authenticated()
 				.and()
 				.httpBasic()
 			.and()		
 			.antMatcher("/**")
 				.authorizeRequests()
-					.antMatchers("/","/commande/**","/client/inscription","/client/save").permitAll()
-					.antMatchers("/client/histo","/client/histo/details").authenticated()
-					.antMatchers("/produit","/produit/**","/client","/client/**").hasAnyRole("ADMIN")
-					.antMatchers("/fournisseur","/fournisseur/**").hasAnyRole("ADMIN")
+//					.antMatchers("/","/rencontre/**","/compte/inscription","/client/save").permitAll()
+//					.antMatchers("/client/histo","/client/histo/details").authenticated()
+//					.antMatchers("/produit","/produit/**","/client","/client/**").hasAnyRole("ADMIN")
+//					.antMatchers("/fournisseur","/fournisseur/**").hasAnyRole("ADMIN")
 					.anyRequest().authenticated()
 				.and()
 				.formLogin()
@@ -83,7 +83,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	public static void main(String[] args) {
-		808958
-	}
 }
