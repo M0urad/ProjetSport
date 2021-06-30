@@ -1,7 +1,7 @@
 export class Lieu {
   constructor(
     private _nom: string = '',
-    private _numero: number = 0,
+    private _numero: number | any = null,
     private _voie: string = '',
     private _ville: string = '',
     private _codePostal: string = ''

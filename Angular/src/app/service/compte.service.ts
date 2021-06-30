@@ -42,14 +42,14 @@ export class CompteService {
 
   public create(compte: Compte): Observable<Compte> {
     this.initHeader();
-    const produitFormate={
-      id:compte.id,
-      username:compte.login,
-      password:compte.password,
-      mail:compte.mail
+    const compteFormate = {
+      id: compte.id,
+      username: compte.username,
+      password: compte.password,
+      mail: compte.mail,
     };
-
-    return this.http.post<Compte>(CompteService.URL, produitFormate, {
+    console.log(compteFormate);
+    return this.http.post<Compte>(CompteService.URL, compteFormate, {
       headers: this.httpHeader,
     });
   }
@@ -57,10 +57,8 @@ export class CompteService {
   public update(compte: Compte): Observable<Compte> {
     this.initHeader();
     console.log(compte);
-    return this.http.put<Compte>(
-      CompteService.URL + '/' + compte.id,
-      compte,
-      { headers: this.httpHeader }
-    );
+    return this.http.put<Compte>(CompteService.URL + '/' + compte.id, compte, {
+      headers: this.httpHeader,
+    });
   }
 }

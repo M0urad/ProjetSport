@@ -9,6 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import application.views.Views;
@@ -38,16 +39,16 @@ public class Joueur extends Compte{
 	@Column(name = "poste")
 	private String poste;
 	
-	@JsonView(Views.JoueurWithRencontre.class)
+	@JsonIgnore
 	@OneToMany(mappedBy = "proprio")
 	private List<Rencontre> rencontre;
 	
 	@OneToMany(mappedBy = "key.joueur")
-	@JsonView(Views.InscriptionWithJoueur.class)
+	@JsonIgnore
 	private List<Inscription> inscription;
 	
 	@OneToMany(mappedBy = "joueur")
-	@JsonView(Views.MessageWithJoueur.class)
+	@JsonIgnore
 	private List<Message> message;
 	
 	public Joueur() {

@@ -52,6 +52,7 @@ export class RencontreService {
       proprio: rencontre.proprio,
       messages: rencontre.messages,
     };
+    console.log(rencontre);
 
     return this.http.post<Rencontre>(RencontreService.URL, rencontreFormatee, {
       headers: this.httpHeader,
@@ -69,6 +70,7 @@ export class RencontreService {
       proprio: rencontre.proprio,
       messages: rencontre.messages,
     };
+    console.log(rencontre);
     return this.http.patch<Rencontre>(
       RencontreService.URL + '/' + rencontre.id,
       rencontreFormatee,
