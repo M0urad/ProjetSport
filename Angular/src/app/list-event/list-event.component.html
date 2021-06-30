@@ -3,7 +3,7 @@
 <table class="table table-bordered">
   <tr>
     <th>Nom</th>
-    <th>Organisé par</th>
+
     <th>Date</th>
     <th>Lieu</th>
     <th>Nombre de participants</th>
@@ -11,11 +11,11 @@
   </tr>
 
   <tr *ngFor="let rencontre of rencontres | async">
-    <td>{{ rencontre.nom }}</td>
-    <td>{{ rencontre.organisateur }}</td>
+    <td>{{ rencontre.name }}</td>
+
     <td>{{ rencontre.date }}</td>
-    <td>{{ rencontre.lieu }}</td>
-    <td>{{ rencontre.inscriptions.size }}</td>
+    <td>{{ rencontre.lieu.nom }}</td>
+    <td>{{ rencontre.nbPlaces }}</td>
     <td></td>
     <td></td>
   </tr>

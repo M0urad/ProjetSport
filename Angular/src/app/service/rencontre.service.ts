@@ -46,11 +46,13 @@ export class RencontreService {
     const rencontreFormatee = {
       nom: rencontre.nom,
       date: rencontre.date,
-      lieu: rencontre.lieu,
+      lieu: {
+        nom: rencontre.lieu.nom,
+        numero: rencontre.lieu.numero,
+        voie: rencontre.lieu.voie,
+        cp: rencontre.lieu.codePostal,
+      },
       nbPlaces: rencontre.nbPlaces,
-      //inscription ?
-      proprio: rencontre.proprio,
-      messages: rencontre.messages,
     };
     console.log(rencontre);
 
@@ -64,11 +66,13 @@ export class RencontreService {
     const rencontreFormatee = {
       nom: rencontre.nom,
       date: rencontre.date,
-      lieu: rencontre.lieu,
+      lieu: {
+        nom: rencontre.lieu.nom,
+        numero: rencontre.lieu.numero,
+        voie: rencontre.lieu.voie,
+        cp: rencontre.lieu.codePostal,
+      },
       nbPlaces: rencontre.nbPlaces,
-      //inscription ?
-      proprio: rencontre.proprio,
-      messages: rencontre.messages,
     };
     console.log(rencontre);
     return this.http.patch<Rencontre>(

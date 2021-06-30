@@ -28,6 +28,7 @@ export class CreaEventComponent implements OnInit {
   villeCtrl: FormControl;
   placesCtrl: FormControl;
   cpCtrl: FormControl;
+  lieuGroup: FormGroup;
   form: FormGroup;
 
   constructor(
@@ -46,15 +47,18 @@ export class CreaEventComponent implements OnInit {
     this.numVoieCtrl = this.fb.control('');
     this.villeCtrl = this.fb.control('');
     this.cpCtrl = this.fb.control('');
-    this.form = this.fb.group({
-      id: this.idCtrl,
-      nom: this.nomCtrl,
-      date: this.dateCtrl,
-      nbPlace: this.placesCtrl,
+    this.lieuGroup = this.fb.group({
       numero: this.numVoieCtrl,
       voie: this.voieCtrl,
       ville: this.villeCtrl,
       cp: this.cpCtrl,
+    });
+    this.form = this.fb.group({
+      id: this.idCtrl,
+      nom: this.nomCtrl,
+      date: this.dateCtrl,
+      lieu: this.lieuGroup,
+      nbPlace: this.placesCtrl,
     });
   }
 

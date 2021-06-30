@@ -44,7 +44,7 @@ export class CompteService {
     this.initHeader();
     const compteFormate = {
       id: compte.id,
-      username: compte.username,
+      username: compte.login,
       password: compte.password,
       mail: compte.mail,
     };

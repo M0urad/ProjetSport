@@ -25,7 +25,12 @@
         </div>
         <div class="form-group">
           <label>Choisis une date :</label>
-          <input class="form-control" name="date" type="date" />
+          <input
+            class="form-control"
+            name="date"
+            type="date"
+            [formControl]="dateCtrl"
+          />
         </div>
         <p>Adresse</p>
         <div class="form-group">

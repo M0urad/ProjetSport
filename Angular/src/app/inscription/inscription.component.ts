@@ -27,13 +27,13 @@ export class InscriptionComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
-    this.loginCtrl=fb.control('')
-    this.passwordCtrl=fb.control('')
-    this.nomCtrl=fb.control('')
-    this.prenomCtrl=fb.control('')
-    this.dateCtrl=fb.control('')
-    this.mailCtrl=fb.control('')
-    this.telephoneCtrl=fb.control('')
+    this.loginCtrl = fb.control('');
+    this.passwordCtrl = fb.control('');
+    this.nomCtrl = fb.control('');
+    this.prenomCtrl = fb.control('');
+    this.dateCtrl = fb.control('');
+    this.mailCtrl = fb.control('');
+    this.telephoneCtrl = fb.control('');
 
     this.form = fb.group({
       login: this.loginCtrl,
@@ -42,13 +42,11 @@ export class InscriptionComponent implements OnInit {
       prenom: this.prenomCtrl,
       date: this.dateCtrl,
       mail: this.mailCtrl,
-      telephone: this.telephoneCtrl
+      telephone: this.telephoneCtrl,
     });
+  }
 
-
-   }
-
-   submit() {
+  submit() {
     console.log(this.form);
     console.log(this.loginCtrl.value);
     console.log(this.passwordCtrl.value);
@@ -64,12 +62,12 @@ export class InscriptionComponent implements OnInit {
       if (params.id) {
         this.JoueurService.get(params.id).subscribe((data) => {
           this.Joueur = data;
-          this.loginCtrl.setValue(this.Joueur.login);
+          this.loginCtrl.setValue(this.Joueur.id);
           this.passwordCtrl.setValue(this.Joueur.password);
           this.mailCtrl.setValue(this.Joueur.mail);
-          this.telephoneCtrl.setValue(this.Joueur.numTel)
-          this.nomCtrl.setValue(this.Joueur.nom)
-          this.prenomCtrl.setValue(this.Joueur.prenom)
+          this.telephoneCtrl.setValue(this.Joueur.numTel);
+          this.nomCtrl.setValue(this.Joueur.nom);
+          this.prenomCtrl.setValue(this.Joueur.prenom);
         });
       }
     });
@@ -80,7 +78,7 @@ export class InscriptionComponent implements OnInit {
       this.loginCtrl.value,
       this.passwordCtrl.value,
       this.prenomCtrl.value,
-      this.nomCtrl.value,
+      this.nomCtrl.value
     );
     if (this.Joueur.id) {
       this.JoueurService.update(this.Joueur).subscribe((result) => {

@@ -1,3 +1,4 @@
+import { RencontreService } from './../service/rencontre.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Rencontre } from '../model/rencontre';
@@ -10,7 +11,9 @@ import { Rencontre } from '../model/rencontre';
 export class ListEventComponent implements OnInit {
   rencontres: Observable<Rencontre[]> | any = null;
 
-  constructor() {}
+  constructor(private rencontreService: RencontreService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rencontres = this.rencontreService.getAll();
+  }
 }
