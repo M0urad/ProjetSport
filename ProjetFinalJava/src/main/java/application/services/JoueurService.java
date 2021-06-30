@@ -47,9 +47,22 @@ public class JoueurService {
 	public List<Joueur> getAll() {
 		return joueurRepository.findAll();
 	}
+	
+	
 	public Joueur getById(Integer id) {
 		if (id != null) {
 			Optional<Joueur> opt = joueurRepository.findById(id);
+			if (opt.isPresent()) {
+				return opt.get();
+			}
+		}
+		return new Joueur();
+
+	}
+	
+	public Joueur getByUsername(String username) {
+		if (username != null) {
+			Optional<Joueur> opt = joueurRepository.findByUsername(username);
 			if (opt.isPresent()) {
 				return opt.get();
 			}

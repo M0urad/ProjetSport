@@ -22,7 +22,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import application.entities.Compte;
 import application.entities.Joueur;
 import application.exceptions.JoueurException;
 import application.exceptions.rest.JoueurInvalidException;
@@ -59,6 +58,16 @@ public class JoueurRestController {
 	@JsonView(Views.Common.class)
 	public Joueur getJoueurById(@PathVariable Integer id) {
 		return getById(id);
+	}
+	
+	@GetMapping("/user/{username}")
+	@JsonView(Views.Common.class)
+	public Joueur getJoueurByUsername(@PathVariable String username) {
+		Joueur joueur = joueurService.getByUsername(username);
+		if (joueur.getUsername()==null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		return joueur;
 	}
 	
 	@GetMapping("/{id}/rencontre")
