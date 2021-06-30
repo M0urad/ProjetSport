@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 					.antMatchers(HttpMethod.OPTIONS).anonymous()
 //					.antMatchers("/api/fournisseur","/api/fournisseur/**").hasRole("ADMIN")
-//					.antMatchers(HttpMethod.POST,"/api/commande").hasRole("USER")
+					.antMatchers(HttpMethod.POST,"/api/compte").anonymous()
 //					.antMatchers("/api/commande","/api/commande/**").authenticated()
 //					.antMatchers(HttpMethod.POST,"/api/client").anonymous()
 //					.antMatchers(HttpMethod.POST,"/api/produit").hasRole("ADMIN")
@@ -72,7 +72,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.inMemoryAuthentication().withUser("toto").password("{noop}toto").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("toto").password("{noop}toto").roles("ADMIN");
 //		auth.inMemoryAuthentication().withUser("lolo").password("{noop}lolo").roles("USER");
 
 		auth.userDetailsService(authService);
