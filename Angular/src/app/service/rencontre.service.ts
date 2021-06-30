@@ -36,9 +36,12 @@ export class RencontreService {
 
   public get(id: number): Observable<Rencontre> {
     this.initHeader();
-    return this.http.get<Rencontre>(RencontreService.URL + '/' + id, {
-      headers: this.httpHeader,
-    });
+    return this.http.get<Rencontre>(
+      RencontreService.URL + '/' + id + '/delete',
+      {
+        headers: this.httpHeader,
+      }
+    );
   }
 
   public create(rencontre: Rencontre): Observable<Rencontre> {
