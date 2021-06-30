@@ -36,18 +36,21 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   seConnecter() {
-    this.loginService.login(this.usernameCtrl, this.passwordCtrl).subscribe(
-      (result) => {
-        localStorage.setItem('login', this.usernameCtrl);
-        localStorage.setItem(
-          'auth',
-          'Basic ' + btoa(this.usernameCtrl + ':' + this.passwordCtrl)
-        );
-        this.router.navigate(['/home']);
-      },
-      (error) => {
-        this.message = 'infos incorrect';
-      }
-    );
+    this.loginService
+      .login(this.usernameCtrl.value, this.passwordCtrl.value)
+      .subscribe(
+        (result) => {
+          localStorage.setItem('login', this.usernameCtrl.value);
+          localStorage.setItem(
+            'auth',
+            'Basic ' +
+              btoa(this.usernameCtrl.value + ':' + this.passwordCtrl.value)
+          );
+          this.router.navigate(['/home']);
+        },
+        (error) => {
+          this.message = 'infos incorrect';
+        }
+      );
   }
 }

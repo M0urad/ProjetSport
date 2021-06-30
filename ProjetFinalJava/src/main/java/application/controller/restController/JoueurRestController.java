@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,9 +22,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import application.entities.Compte;
 import application.entities.Joueur;
+import application.exceptions.CompteException;
 import application.exceptions.JoueurException;
 import application.exceptions.rest.JoueurInvalidException;
+import application.services.CompteService;
 import application.services.JoueurService;
 import application.views.Views;
 
@@ -34,6 +38,8 @@ public class JoueurRestController {
 
 	@Autowired
 	private JoueurService joueurService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("")
 	@JsonView(Views.Common.class)
@@ -80,12 +86,12 @@ public class JoueurRestController {
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
 	@JsonView(Views.Common.class)
-	public Joueur create(@RequestBody @Valid Joueur joueur, BindingResult br) {
+	public Joueur create(@RequestBody @Valid Joueur joueur, @RequestBody @Valid Compte compte, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new JoueurInvalidException();
 		}
 		try {
-//			joueur.getUtilisateur().setPassword(passwordEncoder.encode(joueur.getUtilisateur().getPassword()));
+			joueur.setPassword(passwordEncoder.encode(joueur.getPassword()));
 			joueur = joueurService.save(joueur);
 		} catch (JoueurException e) {
 			throw new JoueurInvalidException();
@@ -99,10 +105,10 @@ public class JoueurRestController {
 		if (br.hasErrors()) {
 			throw new JoueurInvalidException();
 		}
-//		client.setId(id);
-//		if (!client.getUtilisateur().getPassword().isEmpty()) {
-//			client.getUtilisateur().setPassword(passwordEncoder.encode(client.getUtilisateur().getPassword()));
-//		}
+		client.setId(id);
+		if (!client.getPassword().isEmpty()) {
+			client.setPassword(passwordEncoder.encode(client.getPassword()));
+		}
 		try {
 			client = joueurService.save(client);
 		} catch (JoueurException e) {

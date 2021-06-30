@@ -47,7 +47,7 @@ export class JoueurService {
       id: joueur.id,
       username: joueur.username,
       password: joueur.password,
-      mail: joueur.mail,
+      email: joueur.mail,
       nom: joueur.nom,
       prenom: joueur.prenom,
       numTel: joueur.numTel,

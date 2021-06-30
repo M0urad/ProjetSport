@@ -6,7 +6,7 @@ export class Joueur extends Compte {
     id?: number,
     username?: string,
     password?: string,
-    role?: Role,
+    role: Role = Role.USER,
     mail?: string,
     private _nom: string = '',
     private _prenom: string = '',
