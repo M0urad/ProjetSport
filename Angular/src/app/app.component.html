@@ -37,6 +37,13 @@
           >Consulter les évènements</a
         >
       </td>
+
+      <td>
+        <a
+          *ngIf="isLogged()"
+          >Bienvenue</a
+        >
+      </td>
     </thead>
   </table>
 </nav>
