@@ -24,10 +24,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import application.entities.Compte;
 import application.entities.Joueur;
-import application.exceptions.CompteException;
 import application.exceptions.JoueurException;
 import application.exceptions.rest.JoueurInvalidException;
-import application.services.CompteService;
 import application.services.JoueurService;
 import application.views.Views;
 
@@ -86,7 +84,7 @@ public class JoueurRestController {
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
 	@JsonView(Views.Common.class)
-	public Joueur create(@RequestBody @Valid Joueur joueur, @RequestBody @Valid Compte compte, BindingResult br) {
+	public Joueur create(@RequestBody @Valid Joueur joueur, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new JoueurInvalidException();
 		}
