@@ -1,6 +1,6 @@
 <h1>Page de connexion</h1>
 
-<form (ngSubmit)="seConnecter()">
+<form (ngSubmit)="seConnecter()" class="log">
   <div class="form-group">
     <label>Login:</label>
     <input
@@ -18,18 +18,23 @@
       type="password"
     />
   </div>
-  <button type="submit" class="btn btn-link">Connexion</button>
-  <button
-    [routerLink]="['/home']"
-    routerLinkActive="active"
-    class="btn btn-link"
-  >
-    Annuler
-  </button>
+
+  <table>
+    <td><button type="submit" class="btn btn-info">Connexion</button></td>
+    <td>
+      <button
+        [routerLink]="['/home']"
+        routerLinkActive="active"
+        class="btn btn-secondary"
+      >
+        Annuler
+      </button>
+    </td>
+  </table>
   <div>{{ message }}</div>
 </form>
 
-<div>
+<div class="inscr">
   Pas encore de compte ?
   <a [routerLink]="['/inscription']" routerLinkActive="active"> S'inscrire </a
   ><br />

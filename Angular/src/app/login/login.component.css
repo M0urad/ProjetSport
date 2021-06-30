@@ -1,3 +1,13 @@
 h1 {
   text-align: center;
 }
+
+.log {
+  width: 50%;
+  margin: auto;
+}
+
+.inscr {
+  text-align: right;
+  margin-right: 400px;
+}

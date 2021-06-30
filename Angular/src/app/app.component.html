@@ -37,6 +37,9 @@
           >Consulter les évènements</a
         >
       </td>
+      <td>
+        <a *ngIf="isLogged()" (click)="logoff()"> Déconnexion </a>
+      </td>
     </thead>
   </table>
 </nav>
