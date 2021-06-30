@@ -2,12 +2,10 @@ import { Joueur } from './../model/joueur';
 import { Inscription } from './../model/inscription';
 import { LoginService } from './../service/login.service';
 import { CompteService } from './../service/compte.service';
-import { Inscription } from './../model/inscription';
 import { RencontreService } from './../service/rencontre.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Rencontre } from '../model/rencontre';
-import { Joueur } from '../model/joueur';
 import { JoueurService } from '../service/joueur.service';
 import { Compte } from '../model/compte';
 

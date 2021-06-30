@@ -53,21 +53,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				.httpBasic();
 		// @formatter:on
-
-		.antMatchers(HttpMethod.POST,"/api/rencontre","/api/rencontre/**").authenticated()
-		.antMatchers(HttpMethod.GET,"/api/rencontre","/api/rencontre/**").authenticated()
-		.antMatchers(HttpMethod.DELETE,"/api/rencontre","/api/rencontre/**").hasRole("ADMIN")
-
-		.antMatchers(HttpMethod.POST,"/api/inscription","/api/inscription/**").authenticated()
-		.antMatchers(HttpMethod.GET,"/api/inscription","/api/inscription/**").authenticated()
-		.antMatchers(HttpMethod.DELETE,"/api/inscription","/api/inscription/**").hasAnyRole("USER","ADMIN")
-
-		.antMatchers(HttpMethod.POST,"/api/joueur","/api/joueur/**").anonymous()
-		.antMatchers(HttpMethod.GET,"/api/joueur","/api/joueur/**").authenticated()
-		
-		.antMatchers(HttpMethod.DELETE,"/api/joueur","/api/joueur/**").hasAnyRole("ADMIN")
-		.and()
-		.httpBasic();
 		
 
 	}
