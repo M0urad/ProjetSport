@@ -50,28 +50,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.POST,"/api/joueur","/api/joueur/**").anonymous()
 					.antMatchers(HttpMethod.GET,"/api/joueur","/api/joueur/**").authenticated()
 					.antMatchers(HttpMethod.DELETE,"/api/joueur","/api/joueur/**").hasAnyRole("ADMIN")
-					
-					.antMatchers("/api","/api/**").authenticated()
 				.and()
-				.httpBasic()
-			.and()		
-			.antMatcher("/**")
-				.authorizeRequests()
-//					.antMatchers("/","/rencontre/**","/compte/inscription","/client/save").permitAll()
-//					.antMatchers("/client/histo","/client/histo/details").authenticated()
-//					.antMatchers("/produit","/produit/**","/client","/client/**").hasAnyRole("ADMIN")
-//					.antMatchers("/fournisseur","/fournisseur/**").hasAnyRole("ADMIN")
-					.anyRequest().authenticated()
-				.and()
-				.formLogin()
-					.loginPage("/login")
-					.defaultSuccessUrl("/")
-					.failureUrl("/login?error")
-					.permitAll()
-				.and()	
-				.logout()
-					.logoutUrl("/logout")
-					.logoutSuccessUrl("/?logout");
+				.httpBasic();
 		// @formatter:on
 
 	}
