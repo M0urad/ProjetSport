@@ -53,7 +53,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				.httpBasic();
 		// @formatter:on
+<<<<<<< Updated upstream
 		
+=======
+
+>>>>>>> Stashed changes
 
 	}
 
