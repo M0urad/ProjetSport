@@ -40,6 +40,13 @@ export class CompteService {
     });
   }
 
+  public getByLogin(login: string): Observable<Compte> {
+    this.initHeader();
+    return this.http.get<Compte>(CompteService.URL + '/' + login, {
+      headers: this.httpHeader,
+    });
+  }
+
   public create(compte: Compte): Observable<Compte> {
     this.initHeader();
     const compteFormate = {

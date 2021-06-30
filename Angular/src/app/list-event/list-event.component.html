@@ -16,7 +16,19 @@
     <td>{{ rencontre.date }}</td>
     <td>{{ rencontre.lieu.nom }}</td>
     <td>{{ rencontre.nbPlaces }}</td>
-    <td></td>
+    <td>
+      <label> place: </label
+      ><select type="number" [(ngModel)]="place"></select>
+    </td>
+    <td>
+      <button
+        *ngIf="!isAdmin()"
+        (click)="insc(rencontre.id)"
+        class="btn btn-dark"
+      >
+        S'inscrire
+      </button>
+    </td>
     <td></td>
     <button class="btn btn-outline-danger" (click)="delete(rencontres.id)">supprimer</button>
   </tr>
