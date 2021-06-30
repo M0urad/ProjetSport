@@ -38,13 +38,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				.authorizeRequests()
 					.antMatchers(HttpMethod.OPTIONS).anonymous()
-//					.antMatchers("/api/fournisseur","/api/fournisseur/**").hasRole("ADMIN")
 					.antMatchers(HttpMethod.POST,"/api/**").anonymous()
-//					.antMatchers("/api/commande","/api/commande/**").authenticated()
-//					.antMatchers(HttpMethod.POST,"/api/client").anonymous()
-//					.antMatchers(HttpMethod.POST,"/api/produit").hasRole("ADMIN")
-//					.antMatchers(HttpMethod.PUT,"/api/produit/**").hasRole("ADMIN")
-//					.antMatchers(HttpMethod.DELETE,"/api/produit/**").hasRole("ADMIN")
+					
+					.antMatchers(HttpMethod.POST,"/api/rencontre","/api/rencontre/**").authenticated()
+					.antMatchers(HttpMethod.GET,"/api/rencontre","/api/rencontre/**").authenticated()
+					.antMatchers(HttpMethod.DELETE,"/api/rencontre","/api/rencontre/**").hasRole("ADMIN")
+					
+					.antMatchers(HttpMethod.POST,"/api/inscription","/api/inscription/**").authenticated()
+					.antMatchers(HttpMethod.GET,"/api/inscription","/api/inscription/**").authenticated()
+					.antMatchers(HttpMethod.DELETE,"/api/inscription","/api/inscription/**").hasAnyRole("USER","ADMIN")
+					
+					.antMatchers(HttpMethod.POST,"/api/joueur","/api/joueur/**").anonymous()
+					.antMatchers(HttpMethod.GET,"/api/joueur","/api/joueur/**").authenticated()
+					.antMatchers(HttpMethod.DELETE,"/api/joueur","/api/joueur/**").hasAnyRole("ADMIN")
+					
 					.antMatchers("/api","/api/**").authenticated()
 				.and()
 				.httpBasic()
