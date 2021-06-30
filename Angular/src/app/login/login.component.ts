@@ -1,3 +1,4 @@
+import { JoueurService } from './../service/joueur.service';
 import { LoginService } from './../service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -7,6 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Joueur } from '../model/joueur';
 
 @Component({
   selector: 'login',
@@ -15,7 +17,7 @@ import {
 })
 export class LoginComponent implements OnInit {
   message: string = '';
-
+  joueur: Joueur = new Joueur();
   usernameCtrl: FormControl | any = null;
   passwordCtrl: FormControl | any = null;
   form: FormGroup | any = null;
@@ -23,7 +25,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private joueurService: JoueurService
   ) {
     this.usernameCtrl = fb.control('', Validators.required);
     this.passwordCtrl = fb.control('', Validators.required);
@@ -46,6 +49,7 @@ export class LoginComponent implements OnInit {
             'Basic ' +
               btoa(this.usernameCtrl.value + ':' + this.passwordCtrl.value)
           );
+
           this.router.navigate(['/home']);
         },
         (error) => {

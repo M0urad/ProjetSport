@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +22,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import application.config.CompteSpring;
+import application.entities.Joueur;
 import application.entities.Rencontre;
 import application.exceptions.RencontreException;
 import application.exceptions.rest.RencontreInvalidException;
@@ -70,12 +73,13 @@ public class RencontreRestController {
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
 	@JsonView(Views.Common.class)
-	public Rencontre create(@RequestBody @Valid Rencontre rencontre, BindingResult br) {
+	public Rencontre create(@RequestBody @Valid Rencontre rencontre, BindingResult br,  @AuthenticationPrincipal CompteSpring compteSpring) {
 		if (br.hasErrors()) {
 			throw new RencontreInvalidException();
 		}
 		try {
 //			rencontre.getUtilisateur().setPassword(passwordEncoder.encode(rencontre.getUtilisateur().getPassword()));
+			rencontre.setProprio((Joueur)compteSpring.getCompte());
 			rencontre = rencontreService.save(rencontre);
 		} catch (RencontreException e) {
 			throw new RencontreInvalidException();

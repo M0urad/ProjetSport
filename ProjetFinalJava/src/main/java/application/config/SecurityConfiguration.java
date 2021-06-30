@@ -31,13 +31,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		http
-		.antMatcher("/api/**")
-		.csrf().ignoringAntMatchers("/api","/api/**")
-		.and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and()
-		.authorizeRequests()
-		.antMatchers(HttpMethod.OPTIONS).anonymous()
+			.antMatcher("/api/**")
+				.csrf().ignoringAntMatchers("/api","/api/**")
+				.and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and()
+				.authorizeRequests()
+					.antMatchers(HttpMethod.OPTIONS).anonymous()
+					
+					.antMatchers(HttpMethod.POST,"/api/rencontre","/api/rencontre/**").hasRole("USER")
+					.antMatchers(HttpMethod.GET,"/api/rencontre","/api/rencontre/**").authenticated()
+					.antMatchers(HttpMethod.DELETE,"/api/rencontre","/api/rencontre/**").hasRole("ADMIN")
+					
+					.antMatchers(HttpMethod.POST,"/api/inscription","/api/inscription/**").authenticated()
+					.antMatchers(HttpMethod.GET,"/api/inscription","/api/inscription/**").authenticated()
+					.antMatchers(HttpMethod.DELETE,"/api/inscription","/api/inscription/**").hasAnyRole("USER","ADMIN")
+					
+					.antMatchers(HttpMethod.POST,"/api/joueur","/api/joueur/**").anonymous()
+					.antMatchers(HttpMethod.GET,"/api/joueur","/api/joueur/**").authenticated()
+					.antMatchers(HttpMethod.DELETE,"/api/joueur","/api/joueur/**").hasAnyRole("ADMIN")
+				.and()
+				.httpBasic();
+		// @formatter:on
 
 		.antMatchers(HttpMethod.POST,"/api/rencontre","/api/rencontre/**").authenticated()
 		.antMatchers(HttpMethod.GET,"/api/rencontre","/api/rencontre/**").authenticated()

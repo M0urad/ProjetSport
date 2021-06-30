@@ -23,6 +23,7 @@ export class CreaEventComponent implements OnInit {
   idCtrl: FormControl;
   nomCtrl: FormControl;
   dateCtrl: FormControl;
+  nomLieuCtrl: FormControl;
   numVoieCtrl: FormControl;
   voieCtrl: FormControl;
   villeCtrl: FormControl;
@@ -41,12 +42,14 @@ export class CreaEventComponent implements OnInit {
     this.nomCtrl = this.fb.control('', Validators.required);
     this.idCtrl = this.fb.control('');
     this.dateCtrl = this.fb.control('', Validators.required);
-    this.voieCtrl = this.fb.control('');
+    this.nomLieuCtrl = this.fb.control('', Validators.required);
+    this.voieCtrl = this.fb.control('', Validators.required);
     this.placesCtrl = this.fb.control('', Validators.required);
-    this.numVoieCtrl = this.fb.control('');
-    this.villeCtrl = this.fb.control('');
-    this.cpCtrl = this.fb.control('');
+    this.numVoieCtrl = this.fb.control('', Validators.required);
+    this.villeCtrl = this.fb.control('', Validators.required);
+    this.cpCtrl = this.fb.control('', Validators.required);
     this.lieuGroup = this.fb.group({
+      nom: this.nomLieuCtrl,
       numero: this.numVoieCtrl,
       voie: this.voieCtrl,
       ville: this.villeCtrl,
@@ -69,6 +72,7 @@ export class CreaEventComponent implements OnInit {
           this.idCtrl.setValue(this.rencontre.id);
           this.nomCtrl.setValue(this.rencontre.nom);
           this.dateCtrl.setValue(this.rencontre.date);
+          this.nomLieuCtrl.setValue(this.rencontre.lieu.nom);
           this.cpCtrl.setValue(this.rencontre.lieu.codePostal);
           this.voieCtrl.setValue(this.rencontre.lieu.voie);
           this.villeCtrl.setValue(this.rencontre.lieu.ville);
@@ -85,7 +89,7 @@ export class CreaEventComponent implements OnInit {
       this.nomCtrl.value,
       this.dateCtrl.value,
       new Lieu(
-        '',
+        this.nomLieuCtrl.value,
         this.numVoieCtrl.value,
         this.voieCtrl.value,
         this.villeCtrl.value,

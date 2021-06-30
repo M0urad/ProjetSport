@@ -81,6 +81,7 @@ public class InscriptionRestController {
 		}
 		try {
 			//inscription.getUtilisateur().setPassword(passwordEncoder.encode(inscription.getUtilisateur().getPassword()));
+			
 			inscription = inscriptionService.save(inscription);
 		} catch (InscriptionException e) {
 			throw new InscriptionInvalidException();
@@ -99,6 +100,7 @@ public class InscriptionRestController {
 //			inscription.getUtilisateur().setPassword(passwordEncoder.encode(inscription.getUtilisateur().getPassword()));
 //		}
 		try {
+			
 			inscription = inscriptionService.save(inscription);
 		} catch (InscriptionException e) {
 			throw new InscriptionInvalidException();

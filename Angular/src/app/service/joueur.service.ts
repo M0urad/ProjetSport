@@ -41,6 +41,13 @@ export class JoueurService {
     });
   }
 
+  public getByUsername(username: string): Observable<Joueur> {
+    this.initHeader();
+    return this.http.get<Joueur>(JoueurService.URL + '/' + username, {
+      headers: this.httpHeader,
+    });
+  }
+
   public create(joueur: Joueur): Observable<Joueur> {
     this.initHeader();
     const joueurFormate = {
