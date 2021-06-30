@@ -1,3 +1,6 @@
+import { Joueur } from './../model/joueur';
+import { Inscription } from './../model/inscription';
+import { LoginService } from './../service/login.service';
 import { RencontreService } from './../service/rencontre.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,5 +18,13 @@ export class ListEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.rencontres = this.rencontreService.getAll();
+
+  }
+
+  delete(id: number) {
+    this.rencontreService.delete(id).subscribe((result) => {
+      this.rencontres = this.rencontreService.getAll();
+    });
+
   }
 }
