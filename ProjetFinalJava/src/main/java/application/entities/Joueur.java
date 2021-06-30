@@ -58,6 +58,7 @@ public class Joueur extends Compte{
 	public Joueur(@NotEmpty(message = "le nom ne peut pas etre vide") @Size(min = 2) String nom,
 			@NotEmpty(message = "le prenom ne peut pas etre vide") @Size(min = 2) String prenom, int numTel,
 			String poste, List<Rencontre> rencontre, List<Inscription> inscription, List<Message> message) {
+		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.numTel = numTel;
@@ -66,6 +67,7 @@ public class Joueur extends Compte{
 		this.inscription = inscription;
 		this.message = message;
 	}
+	
 
 	public String getNom() {
 		return nom;

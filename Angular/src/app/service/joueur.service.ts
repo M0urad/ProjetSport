@@ -53,9 +53,7 @@ export class JoueurService {
       numTel: joueur.numTel,
     };
     console.log(joueurFormate);
-    return this.http.post<Joueur>(JoueurService.URL, joueurFormate, {
-      headers: this.httpHeader,
-    });
+    return this.http.post<Joueur>(JoueurService.URL, joueurFormate, {});
   }
 
   public update(joueur: Joueur): Observable<Joueur> {

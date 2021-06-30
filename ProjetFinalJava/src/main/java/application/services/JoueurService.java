@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import application.entities.Joueur;
+import application.entities.Role;
 import application.exceptions.JoueurException;
 import application.repositories.JoueurRepository;
 
@@ -24,6 +25,7 @@ public class JoueurService {
 //		if (joueur.getCompte() == null) {
 //			throw new JoueurException("Pas de compte pour ce joueur");
 //		}
+		joueur.setRole(Role.ROLE_USER);
 		return joueurRepository.save(joueur);
 	}
 	

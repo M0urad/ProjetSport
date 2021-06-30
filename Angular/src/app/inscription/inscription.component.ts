@@ -9,6 +9,7 @@ import {
 import { JoueurService } from './../service/joueur.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Compte } from '../model/compte';
 
 @Component({
   selector: 'inscription',
@@ -29,6 +30,7 @@ export class InscriptionComponent implements OnInit {
   form: FormGroup;
 
   joueur: Joueur = new Joueur();
+  compte: Compte = new Compte();
 
   constructor(
     private JoueurService: JoueurService,
@@ -56,7 +58,7 @@ export class InscriptionComponent implements OnInit {
 
     this.form = fb.group({
       id: this.idCtrl,
-      login: this.usernameCtrl,
+      username: this.usernameCtrl,
       passwordGroup: this.passwordGroup,
       nom: this.nomCtrl,
       prenom: this.prenomCtrl,
@@ -82,6 +84,13 @@ export class InscriptionComponent implements OnInit {
       this.prenomCtrl.value,
       this.telephoneCtrl.value
     );
+    this.compte = new Compte(
+      this.idCtrl.value,
+      this.usernameCtrl.value,
+      this.passwordCtrl.value,
+      Role.USER
+    );
+
     if (this.joueur.id) {
       this.JoueurService.update(this.joueur).subscribe((result) => {
         this.router.navigate(['/home']);
