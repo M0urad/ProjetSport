@@ -38,7 +38,6 @@ export class CreaEventComponent implements OnInit {
     private fb: FormBuilder,
     private aR: ActivatedRoute
   ) {
-    this.joueur.nom = 'Zizou';
     this.nomCtrl = this.fb.control('', Validators.required);
     this.idCtrl = this.fb.control('');
     this.dateCtrl = this.fb.control('', Validators.required);

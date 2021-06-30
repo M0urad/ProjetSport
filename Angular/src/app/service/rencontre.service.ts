@@ -21,8 +21,10 @@ export class RencontreService {
   }
 
   public getAll(): Observable<Rencontre[]> {
-    //this.initHeader();
-    return this.http.get<Rencontre[]>(RencontreService.URL, {});
+    this.initHeader();
+    return this.http.get<Rencontre[]>(RencontreService.URL, {
+      headers: this.httpHeader,
+    });
   }
 
   public delete(id: number): Observable<void> {
@@ -54,11 +56,9 @@ export class RencontreService {
     };
     console.log(rencontreFormatee);
 
-    return this.http.post<Rencontre>(
-      RencontreService.URL,
-      rencontreFormatee,
-      {headers: this.httpHeader}
-    );
+    return this.http.post<Rencontre>(RencontreService.URL, rencontreFormatee, {
+      headers: this.httpHeader,
+    });
   }
 
   public update(rencontre: Rencontre): Observable<Rencontre> {
