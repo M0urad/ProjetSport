@@ -44,7 +44,7 @@ export class RencontreService {
   public create(rencontre: Rencontre): Observable<Rencontre> {
     this.initHeader();
     const rencontreFormatee = {
-      nom: rencontre.nom,
+      name: rencontre.nom,
       date: rencontre.date,
       lieu: {
         nom: rencontre.lieu.nom,
