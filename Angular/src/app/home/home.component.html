@@ -1,7 +1,9 @@
 <h1>Bienvenue sur le site n°1 d'évenements sportifs</h1>
 
 <div class="connexion">
-  <a [routerLink]="['/login']" routerLinkActive="active"> Se Connecter</a>
+  <a *ngIf="!isLogged()" [routerLink]="['/login']" routerLinkActive="active">
+    Se Connecter</a
+  >
 </div>
 
 <div class="row">
