@@ -19,7 +19,7 @@ export class InscriptionComponent implements OnInit {
   telephoneCtrl: FormControl;
   form: FormGroup;
 
-  Joueur: Joueur = new Joueur();
+  joueur: Joueur = new Joueur();
 
   constructor(
     private JoueurService: JoueurService,
@@ -27,13 +27,13 @@ export class InscriptionComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
-    this.usernameCtrl=fb.control('')
-    this.passwordCtrl=fb.control('')
-    this.nomCtrl=fb.control('')
-    this.prenomCtrl=fb.control('')
-    this.dateCtrl=fb.control('')
-    this.mailCtrl=fb.control('')
-    this.telephoneCtrl=fb.control('')
+    this.usernameCtrl = fb.control('');
+    this.passwordCtrl = fb.control('');
+    this.nomCtrl = fb.control('');
+    this.prenomCtrl = fb.control('');
+    this.dateCtrl = fb.control('');
+    this.mailCtrl = fb.control('');
+    this.telephoneCtrl = fb.control('');
 
     this.form = fb.group({
       login: this.usernameCtrl,
@@ -61,20 +61,20 @@ export class InscriptionComponent implements OnInit {
     this.aR.params.subscribe((params) => {
       if (params.id) {
         this.JoueurService.get(params.id).subscribe((data) => {
-          this.Joueur = data;
-          this.usernameCtrl.setValue(this.Joueur.login);
-          this.passwordCtrl.setValue(this.Joueur.password);
-          this.mailCtrl.setValue(this.Joueur.mail);
-          this.telephoneCtrl.setValue(this.Joueur.numTel);
-          this.nomCtrl.setValue(this.Joueur.nom);
-          this.prenomCtrl.setValue(this.Joueur.prenom);
+          this.joueur = data;
+          this.usernameCtrl.setValue(this.joueur.username);
+          this.passwordCtrl.setValue(this.joueur.password);
+          this.mailCtrl.setValue(this.joueur.mail);
+          this.telephoneCtrl.setValue(this.joueur.numTel);
+          this.nomCtrl.setValue(this.joueur.nom);
+          this.prenomCtrl.setValue(this.joueur.prenom);
         });
       }
     });
   }
 
   save() {
-    this.Joueur = new Joueur(
+    this.joueur = new Joueur(
       this.usernameCtrl.value,
       this.passwordCtrl.value,
       this.prenomCtrl.value,
@@ -83,12 +83,12 @@ export class InscriptionComponent implements OnInit {
       this.mailCtrl.value,
       this.telephoneCtrl.value
     );
-    if (this.Joueur.id) {
-      this.JoueurService.update(this.Joueur).subscribe((result) => {
+    if (this.joueur.id) {
+      this.JoueurService.update(this.joueur).subscribe((result) => {
         this.router.navigate(['/home']);
       });
     } else {
-      this.JoueurService.create(this.Joueur).subscribe((result) => {
+      this.JoueurService.create(this.joueur).subscribe((result) => {
         this.router.navigate(['/home']);
       });
     }
