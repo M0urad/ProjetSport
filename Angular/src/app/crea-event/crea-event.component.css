@@ -1,6 +1,13 @@
 .formulaire {
   width: fit-content;
 }
+label{
+  color: black;
+}
+
+h1{
+  color: mediumslateblue;
+}
 
 .showcase {
   background-image: url(/assets/image/corner.jpg);
