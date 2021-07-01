@@ -42,9 +42,14 @@
         </td>
 
         <td>
-          <button class="btn btn-outline-danger" (click)="delete(rencontre.id)">
-            supprimer
-          </button>
+          <div *ngIf="isProprio(rencontre)">
+            <button
+              class="btn btn-outline-danger"
+              (click)="delete(rencontre.id)"
+            >
+              supprimer
+            </button>
+          </div>
         </td>
       </tr>
     </table>

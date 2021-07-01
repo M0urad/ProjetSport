@@ -66,7 +66,13 @@ export class ListEventComponent implements OnInit {
         subscribed = false;
       }
     }
-
+    return subscribed;
+  }
+  isProprio(rencontre: Rencontre): boolean {
+    let subscribed: boolean = false;
+    if (rencontre.proprio.username == localStorage.getItem('login')) {
+      subscribed = true;
+    }
     return subscribed;
   }
 
