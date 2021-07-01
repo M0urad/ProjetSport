@@ -1,6 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Observable } from 'rxjs';
+import { JoueurService } from './service/joueur.service';
+import { Joueur } from './model/joueur';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from './service/login.service';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +11,12 @@ import { LoginService } from './service/login.service';
 })
 export class AppComponent {
   title = 'Angular';
-  message: String = '';
+  prenom: string | any = null;
 
-  constructor(private router: Router, private loginService: LoginService) {
-    this.loginService.login, (this.message = '');
-  }
+  constructor(private router: Router, private joueurService: JoueurService) {}
 
   isLogged(): boolean {
+    this.prenom = localStorage.getItem('prenom');
     return localStorage.getItem('login') ? true : false;
   }
 

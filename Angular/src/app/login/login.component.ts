@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
             'Basic ' +
               btoa(this.usernameCtrl.value + ':' + this.passwordCtrl.value)
           );
+          localStorage.setItem('prenom', result.prenom);
 
           this.router.navigate(['/home']);
         },

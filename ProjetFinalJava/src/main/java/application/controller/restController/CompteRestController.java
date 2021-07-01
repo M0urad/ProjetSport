@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import application.config.CompteSpring;
 import application.entities.Compte;
 import application.exceptions.CompteException;
 import application.exceptions.rest.CompteInvalidException;
@@ -60,6 +62,12 @@ public class CompteRestController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 		return compte;
+	}
+	
+	@GetMapping("/user")
+	@JsonView(Views.Common.class)
+	public Compte getCompte(@AuthenticationPrincipal CompteSpring compteSpring) {
+		return compteSpring.getCompte();
 	}
 	
 	@DeleteMapping("/{id}")
