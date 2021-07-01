@@ -2,8 +2,8 @@
 
 <table class="table table-bordered">
   <tr>
+    <th>Organisé par</th>
     <th>Nom</th>
-
     <th>Date</th>
     <th>Lieu</th>
     <th>Nombre de participants</th>
@@ -11,6 +11,7 @@
   </tr>
 
   <tr *ngFor="let rencontre of rencontres | async">
+    <td>{{ rencontre.proprio.name }}</td>
     <td>{{ rencontre.name }}</td>
 
     <td>{{ rencontre.date }}</td>

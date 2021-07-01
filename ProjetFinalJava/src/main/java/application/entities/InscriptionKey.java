@@ -7,9 +7,14 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import application.views.Views;
+
 @Embeddable
 public class InscriptionKey implements Serializable{
 	
+	@JsonView(Views.Common.class)
 	@ManyToOne
 	@JoinColumn(name="ik_joueur_id", foreignKey=@ForeignKey(name="inscription_joueur_id_fk"))
 	private Joueur joueur;

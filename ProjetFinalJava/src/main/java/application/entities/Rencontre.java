@@ -58,7 +58,7 @@ public class Rencontre {
 	@Column(name = "nombre_places", nullable = false)
 	private int nbPlaces;
 	
-	@JsonIgnore
+	@JsonView(Views.Common.class)
 	@OneToMany(mappedBy = "key.rencontre")
 	private List<Inscription> listInscription;
 	
@@ -68,7 +68,7 @@ public class Rencontre {
 	private Joueur proprio;
 	
 	@OneToMany(mappedBy = "rencontre")
-	@JsonIgnore
+	
 	private List<Message> listMessages;
 
 	public Rencontre() {

@@ -17,6 +17,7 @@ import { Joueur } from '../model/joueur';
 })
 export class LoginComponent implements OnInit {
   message: string = '';
+  pseudo: string = '';
   joueur: Joueur = new Joueur();
   usernameCtrl: FormControl | any = null;
   passwordCtrl: FormControl | any = null;
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       username: this.usernameCtrl,
       password: this.passwordCtrl,
     });
+    //this.pseudo = this.usernameCtrl.value;
   }
 
   ngOnInit(): void {}

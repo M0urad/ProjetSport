@@ -11,6 +11,7 @@ import application.views.Views;
 public class Inscription {
 
 	@EmbeddedId
+	@JsonView(Views.Common.class)
 	private InscriptionKey key;
 	
 	@JsonView(Views.Common.class)

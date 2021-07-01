@@ -26,6 +26,7 @@ import application.config.CompteSpring;
 import application.entities.Inscription;
 import application.entities.InscriptionKey;
 import application.entities.Joueur;
+import application.entities.Rencontre;
 import application.exceptions.InscriptionException;
 import application.exceptions.rest.InscriptionInvalidException;
 import application.services.InscriptionService;
@@ -78,18 +79,19 @@ public class InscriptionRestController {
 		inscriptionService.delete(inscription);
 	}
 
-	@PostMapping("/inscKey{inscription}_renc{id}")
+	@PostMapping("/inscKey_renc/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	@JsonView(Views.Common.class)
-	public Inscription create(@RequestBody @Valid Inscription inscription, BindingResult br, @AuthenticationPrincipal CompteSpring compteSpring,@RequestBody @Valid Integer id) {
+	public Inscription create(@RequestBody @Valid Inscription inscription, BindingResult br, @AuthenticationPrincipal CompteSpring compteSpring,@PathVariable Integer id) {
 		if (br.hasErrors()) {
 			throw new InscriptionInvalidException();
 		}
+		Rencontre rencontre = rencontreService.getById(id);
 		try {
 			//inscription.getUtilisateur().setPassword(passwordEncoder.encode(inscription.getUtilisateur().getPassword()));
 			InscriptionKey inscKey= new InscriptionKey( );
 			inscKey.setJoueur((Joueur)compteSpring.getCompte());
-			inscKey.setRencontre(rencontreService.getById(id));
+			inscKey.setRencontre(rencontre);
 			inscription.setKey(inscKey);
 			
 			inscription = inscriptionService.save(inscription);
