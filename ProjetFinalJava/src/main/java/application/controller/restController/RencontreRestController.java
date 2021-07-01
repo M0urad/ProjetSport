@@ -31,6 +31,7 @@ import application.exceptions.RencontreException;
 import application.exceptions.rest.RencontreInvalidException;
 import application.model.InscriptionAngular;
 import application.model.RencontreAngular;
+import application.services.InscriptionService;
 import application.services.RencontreService;
 import application.views.Views;
 
@@ -41,6 +42,8 @@ public class RencontreRestController {
 
 	@Autowired
 	private RencontreService rencontreService;
+	@Autowired
+	private InscriptionService inscriptionService;
 	@Autowired
 	private InscriptionRestController insRest;
 	
@@ -94,6 +97,9 @@ public class RencontreRestController {
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Integer id) {
+		for(Inscription ins : rencontreService.getById(id).getListInscription()) {
+			inscriptionService.delete(ins);
+		}
 		rencontreService.delete(id);
 	}
 	

@@ -42,7 +42,8 @@ export class ListEventComponent implements OnInit {
 
   delete(id: number) {
     this.rencontreService.delete(id).subscribe((result) => {
-      this.rencontres = this.rencontreService.getAll();
+      /*this.rencontres = this.rencontreService.getAll();*/
+      this.rencontres = this.rencontreService.getRencAng();
     });
   }
 
@@ -50,7 +51,7 @@ export class ListEventComponent implements OnInit {
     this.inscriptionService
       .sinscrire(id_rencontre, this.placesReserveesCtrl.value)
       .subscribe((result) => {
-        this.router.navigate(['/listEvents']);
+        this.rencontres = this.rencontreService.getRencAng();
       });
 
     this.inscription.placesReservees = this.placesReserveesCtrl.value;
@@ -65,6 +66,7 @@ export class ListEventComponent implements OnInit {
         subscribed = false;
       }
     }
+
     return subscribed;
   }
 

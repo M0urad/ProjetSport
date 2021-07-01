@@ -1,60 +1,62 @@
 <div class="showcase">
-  <div class="card container ">
-<h3>Liste de tes évènements</h3>
+  <div class="card container">
+    <h3>Liste de tes évènements</h3>
 
-<table class="table table-bordered">
-  <tr>
-    <th>Organisé par</th>
-    <th>Nom</th>
-    <th>Date</th>
-    <th>Lieu</th>
-    <th>Nombre de participants</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <table class="table table-bordered">
+      <tr>
+        <th>Organisé par</th>
+        <th>Nom</th>
+        <th>Date</th>
+        <th>Lieu</th>
+        <th>Nombre de participants</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
 
-  <tr *ngFor="let rencontre of rencontres | async">
-    <td>{{ rencontre.proprio.nom }}</td>
-    <td>{{ rencontre.name }}</td>
+      <tr *ngFor="let rencontre of rencontres | async">
+        <td>{{ rencontre.proprio.nom }}</td>
+        <td>{{ rencontre.name }}</td>
 
-    <td>{{ rencontre.date }}</td>
-    <td>{{ rencontre.lieu.nom }}</td>
-    <td>{{ rencontre.nbPlaces }}</td>
-    <td>
-      <form *ngIf="!isInscrit(rencontre)" (ngSubmit)="insc(rencontre.id)">
-        <div class="form-group">
-          <label> Places à réserver: </label
-          ><input
-            class="form-control container"
-            type="number"
-            [formControl]="placesReserveesCtrl"
-          />
-        </div>
+        <td>{{ rencontre.date }}</td>
+        <td>{{ rencontre.lieu.nom }}</td>
+        <td>{{ rencontre.nbPlaces }}</td>
+        <td>
+          <form *ngIf="!isInscrit(rencontre)" (ngSubmit)="insc(rencontre.id)">
+            <div class="form-group">
+              <label> Places à réserver: </label
+              ><input
+                class="form-control container"
+                type="number"
+                [formControl]="placesReserveesCtrl"
+              />
+            </div>
 
-        <button type="submit" class="btn btn-outline-primary">
-          S'inscrire
-        </button>
-      </form>
-      <div *ngIf="isInscrit(rencontre)">
-        <button class="btn btn-outline-primary">Déjà Inscrit</button>
-      </div>
-    </td>
+            <button type="submit" class="btn btn-outline-primary">
+              S'inscrire
+            </button>
+          </form>
+          <div *ngIf="isInscrit(rencontre)">
+            <button class="btn btn-outline-primary">Déjà Inscrit</button>
+          </div>
+        </td>
 
-    <td>
-      <button class="btn btn-outline-danger" (click)="delete(rencontres.id)">
-        supprimer
-      </button>
-    </td>
-  </tr>
-</table>
+        <td>
+          <button class="btn btn-outline-danger" (click)="delete(rencontre.id)">
+            supprimer
+          </button>
+        </td>
+      </tr>
+    </table>
 
-<div>
-  <a
-    [routerLink]="['/home']"
-    routerLinkActive="active"
-    class="btn btn-primary"
-  >
-    Retour</a
-  >
+    <div>
+      <a
+        [routerLink]="['/home']"
+        routerLinkActive="active"
+        class="btn btn-primary"
+      >
+        Retour</a
+      >
+    </div>
+  </div>
 </div>
