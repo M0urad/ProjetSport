@@ -10,36 +10,42 @@
     <th>Lieu</th>
     <th>Nombre de participants</th>
     <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
   <tr *ngFor="let rencontre of rencontres | async">
-    <td>{{ rencontre.proprio.name }}</td>
+    <td>{{ rencontre.proprio.nom }}</td>
     <td>{{ rencontre.name }}</td>
 
     <td>{{ rencontre.date }}</td>
     <td>{{ rencontre.lieu.nom }}</td>
     <td>{{ rencontre.nbPlaces }}</td>
     <td>
-      <form (ngSubmit)="insc(rencontre.id)">
+      <form *ngIf="!isInscrit(rencontre)" (ngSubmit)="insc(rencontre.id)">
         <div class="form-group">
-          <label> place: </label
+          <label> Places à réserver: </label
           ><input
-            class="form-control"
+            class="form-control container"
             type="number"
             [formControl]="placesReserveesCtrl"
           />
         </div>
+
+        <button type="submit" class="btn btn-outline-primary">
+          S'inscrire
+        </button>
       </form>
+      <div *ngIf="isInscrit(rencontre)">
+        <button class="btn btn-outline-primary">Déjà Inscrit</button>
+      </div>
     </td>
+
     <td>
-      <button *ngIf="!isAdmin()" type="submit" class="btn btn-dark">
-        S'inscrire
+      <button class="btn btn-outline-danger" (click)="delete(rencontres.id)">
+        supprimer
       </button>
     </td>
-    <td></td>
-    <button class="btn btn-outline-danger" (click)="delete(rencontres.id)">
-      supprimer
-    </button>
   </tr>
 </table>
 

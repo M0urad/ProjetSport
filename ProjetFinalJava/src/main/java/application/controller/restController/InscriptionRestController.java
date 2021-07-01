@@ -1,5 +1,6 @@
 package application.controller.restController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -29,7 +30,9 @@ import application.entities.Joueur;
 import application.entities.Rencontre;
 import application.exceptions.InscriptionException;
 import application.exceptions.rest.InscriptionInvalidException;
+import application.model.InscriptionAngular;
 import application.services.InscriptionService;
+import application.services.JoueurService;
 import application.services.RencontreService;
 import application.views.Views;
 
@@ -42,6 +45,8 @@ public class InscriptionRestController {
 	private InscriptionService inscriptionService;
 	@Autowired
 	private RencontreService rencontreService;
+	@Autowired
+	private JoueurService joueurService;
 
 	@GetMapping("")
 	@JsonView(Views.Common.class)
@@ -51,6 +56,20 @@ public class InscriptionRestController {
 
 	private List<Inscription> getAll() {
 		return inscriptionService.getAll();
+	}
+	
+	@GetMapping("/ang/{idRencontre}")
+	@JsonView(Views.Common.class)
+	public List<InscriptionAngular> getAllAng(@PathVariable Integer idRencontre) {
+		List<InscriptionAngular> insAngList = new ArrayList();
+		List<Inscription> inscriptions = inscriptionService.getByRencontre(idRencontre);
+		for(Inscription ins : inscriptions) {
+			InscriptionAngular insAng = new InscriptionAngular();
+			insAng.setJoueur(ins.getKey().getJoueur());
+			insAng.setNbPlaces(ins.getPlacesReservees());
+			insAngList.add(insAng);
+		}		
+		return insAngList;
 	}
 
 	@GetMapping("/{id}")

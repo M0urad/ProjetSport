@@ -1,5 +1,6 @@
 package application.controller.restController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -23,10 +24,13 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import application.config.CompteSpring;
+import application.entities.Inscription;
 import application.entities.Joueur;
 import application.entities.Rencontre;
 import application.exceptions.RencontreException;
 import application.exceptions.rest.RencontreInvalidException;
+import application.model.InscriptionAngular;
+import application.model.RencontreAngular;
 import application.services.RencontreService;
 import application.views.Views;
 
@@ -37,11 +41,34 @@ public class RencontreRestController {
 
 	@Autowired
 	private RencontreService rencontreService;
+	@Autowired
+	private InscriptionRestController insRest;
 	
 	@GetMapping("")
 	@JsonView(Views.Common.class)
 	public List<Rencontre> getAllRencontre(){
 		return getAll();
+	}
+	
+
+	@GetMapping("/ang")
+	@JsonView(Views.Common.class)
+	private List<RencontreAngular> getAllAng() {
+		List<RencontreAngular> rencAngList = new ArrayList();
+		List<Rencontre> rencontres = rencontreService.getAll();
+		for(Rencontre renc : rencontres) {
+			RencontreAngular rencAng = new RencontreAngular();
+			rencAng.setInscriptions(insRest.getAllAng(renc.getId()));
+			rencAng.setProprio(renc.getProprio());
+			rencAng.setDate(renc.getDate());
+			rencAng.setLieu(renc.getLieu());
+			rencAng.setMessages(null);
+			rencAng.setNom(renc.getName());
+			rencAng.setNbPlaces(renc.getNbPlaces());
+			rencAng.setId(renc.getId());
+			rencAngList.add(rencAng);
+		}		
+		return rencAngList;
 	}
 	
 	

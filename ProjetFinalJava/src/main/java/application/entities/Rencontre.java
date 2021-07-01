@@ -62,7 +62,7 @@ public class Rencontre {
 	@OneToMany(mappedBy = "key.rencontre")
 	private List<Inscription> listInscription;
 	
-	@JsonView(Views.RencontreWithJoueur.class)
+	@JsonView(Views.Common.class)
 	@ManyToOne
 	@JoinColumn(name = "id_proprio", foreignKey = @ForeignKey(name = "rencontre_id_proprio_fk"))
 	private Joueur proprio;

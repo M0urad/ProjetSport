@@ -10,6 +10,7 @@ import { JoueurService } from '../service/joueur.service';
 import { Compte } from '../model/compte';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { InscriptionRencontreService } from '../service/inscription-rencontre.service';
 
 @Component({
   selector: 'app-list-event',
@@ -26,6 +27,7 @@ export class ListEventComponent implements OnInit {
 
   constructor(
     private rencontreService: RencontreService,
+    private inscriptionService: InscriptionRencontreService,
     private joueurService: JoueurService,
     private compteService: CompteService,
     private fb: FormBuilder,
@@ -35,7 +37,7 @@ export class ListEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.rencontres = this.rencontreService.getAll();
+    this.rencontres = this.rencontreService.getRencAng();
   }
 
   delete(id: number) {
@@ -45,10 +47,25 @@ export class ListEventComponent implements OnInit {
   }
 
   insc(id_rencontre: number) {
+    this.inscriptionService
+      .sinscrire(id_rencontre, this.placesReserveesCtrl.value)
+      .subscribe((result) => {
+        this.router.navigate(['/listEvents']);
+      });
+
     this.inscription.placesReservees = this.placesReserveesCtrl.value;
-    // this.InscriptionService.create(this.inscription).subscribe((result) => {
-    //   this.router.navigate(['/home']);
-    // });
+  }
+
+  isInscrit(rencontre: Rencontre): boolean {
+    let subscribed: boolean = false;
+    for (let b of rencontre.inscriptions) {
+      if (b.joueur.username == localStorage.getItem('login')) {
+        subscribed = true;
+      } else {
+        subscribed = false;
+      }
+    }
+    return subscribed;
   }
 
   isAdmin(): boolean {

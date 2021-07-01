@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Joueur } from '../model/joueur';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'login',

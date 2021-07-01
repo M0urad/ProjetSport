@@ -44,6 +44,13 @@ export class RencontreService {
     );
   }
 
+  public getRencAng(): Observable<Rencontre[]> {
+    this.initHeader();
+    return this.http.get<Rencontre[]>(RencontreService.URL + '/ang ', {
+      headers: this.httpHeader,
+    });
+  }
+
   public create(rencontre: Rencontre): Observable<Rencontre> {
     this.initHeader();
     const rencontreFormatee = {

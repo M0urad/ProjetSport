@@ -12,33 +12,33 @@ import application.repositories.InscriptionRepository;
 
 @Service
 public class InscriptionService {
-	
+
 	@Autowired
 	InscriptionRepository inscriptionRepository;
-	
-	
+
+
 	public Inscription save(Inscription inscription) throws InscriptionException {
-//		if (inscription.getJoueur() == null) {
-//			throw new InscriptionException("Joueur obligatoire");
-//		}
+		//		if (inscription.getJoueur() == null) {
+		//			throw new InscriptionException("Joueur obligatoire");
+		//		}
 		if (inscription.getPlacesReservees() == 0) {
 			throw new InscriptionException("Pas de nombres de places réservées pour cette inscription");
 		}
 		return inscriptionRepository.save(inscription);
 	}
-	
+
 	public void delete(Inscription inscription) {
 		if (inscription != null) {
 			inscriptionRepository.delete(inscription);
 		}
 	}
-	
+
 	public void deleteById(Integer id) {
 		if (id != null) {
 			inscriptionRepository.deleteById(id);
 		}
 	}
-	
+
 	public List<Inscription> getAll() {
 		return inscriptionRepository.findAll();
 	}
@@ -51,6 +51,11 @@ public class InscriptionService {
 		}
 		return new Inscription();
 
+	}
+
+	public List<Inscription> getByRencontre(Integer idRencontre) {
+		List<Inscription> list = inscriptionRepository.findByRencontre(idRencontre);
+		return list;
 	}
 
 }
