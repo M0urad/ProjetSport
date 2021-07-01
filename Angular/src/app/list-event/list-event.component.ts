@@ -1,6 +1,5 @@
 import { Joueur } from './../model/joueur';
 import { Inscription } from './../model/inscription';
-import { LoginService } from './../service/login.service';
 import { CompteService } from './../service/compte.service';
 import { RencontreService } from './../service/rencontre.service';
 import { Component, OnInit } from '@angular/core';
@@ -74,6 +73,17 @@ export class ListEventComponent implements OnInit {
       subscribed = true;
     }
     return subscribed;
+  }
+
+  isEnough(nbPlaces: Observable<number>, idRencontre: number): boolean {
+    if (this.resPlaces(idRencontre) < nbPlaces) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  resPlaces(idRencontre: number): Observable<number> {
+    return this.inscriptionService.getResPlaces(idRencontre);
   }
 
   isAdmin(): boolean {

@@ -56,6 +56,16 @@ export class InscriptionRencontreService {
     );
   }
 
+  public getResPlaces(idRencontre: number): Observable<number> {
+    this.initHeader();
+    return this.http.get<number>(
+      InscriptionRencontreService.URL + '/reservees/' + idRencontre,
+      {
+        headers: this.httpHeader,
+      }
+    );
+  }
+
   public sinscrire(
     id_rencontre: number,
     nbPlaces: number

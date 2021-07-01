@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import application.entities.Rencontre;
 
 public interface RencontreRepository extends JpaRepository<Rencontre, Integer> {
-	//@Query("select id from Rencontre where id=:id")
-	//Optional<Rencontre> findById(@Param("id") Integer id);
+	@Query("select rencontre from Rencontre rencontre where rencontre.id=:id")
+	Optional<Rencontre> findById(@Param("id") Integer id);
 }

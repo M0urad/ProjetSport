@@ -9,6 +9,7 @@
         <th>Date</th>
         <th>Lieu</th>
         <th>Nombre de participants</th>
+        <th>Nombre de places réservées</th>
         <th></th>
         <th></th>
         <th></th>
@@ -21,8 +22,16 @@
         <td>{{ rencontre.date }}</td>
         <td>{{ rencontre.lieu.nom }}</td>
         <td>{{ rencontre.nbPlaces }}</td>
+        <td>{{ resPlaces(rencontre.id) }}</td>
+
         <td>
-          <form *ngIf="!isInscrit(rencontre)" (ngSubmit)="insc(rencontre.id)">
+          <form
+            *ngIf="
+              !isInscrit(rencontre) &&
+              !isEnough(rencontre.nbPlaces, rencontre.id)
+            "
+            (ngSubmit)="insc(rencontre.id)"
+          >
             <div class="form-group">
               <label> Places à réserver: </label
               ><input
@@ -30,13 +39,15 @@
                 type="number"
                 [formControl]="placesReserveesCtrl"
               />
+              <button type="submit" class="btn btn-outline-primary">
+                S'inscrire
+              </button>
             </div>
-
-            <button type="submit" class="btn btn-outline-primary">
-              S'inscrire
-            </button>
           </form>
-          <div *ngIf="isInscrit(rencontre)">
+          <div *ngIf="isEnough(rencontre.nbPlaces, rencontre.id)">
+            <p>Complet</p>
+          </div>
+          <div *ngIf="!isInscrit(rencontre)">
             <button class="btn btn-outline-primary">Déjà Inscrit</button>
           </div>
         </td>

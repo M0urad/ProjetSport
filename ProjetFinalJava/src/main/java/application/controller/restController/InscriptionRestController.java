@@ -72,6 +72,9 @@ public class InscriptionRestController {
 		return insAngList;
 	}
 
+	
+	
+
 	@GetMapping("/{id}")
 	@JsonView(Views.Common.class)
 	public Inscription getInscriptionById(@PathVariable Integer id) {

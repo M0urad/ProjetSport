@@ -74,6 +74,17 @@ public class RencontreRestController {
 		return rencAngList;
 	}
 	
+	@GetMapping("/reservees/{id}")
+	@JsonView(Views.Common.class)
+	public Integer getAllPlaceRes(@PathVariable Integer id) {
+		Rencontre renc = rencontreService.getById(id);
+		Integer tmp=0;
+		for(Inscription ins : renc.getListInscription() ) {
+			tmp=tmp+ins.getPlacesReservees();
+		}
+		return tmp;
+	}
+	
 	
 	private List<Rencontre> getAll(){
 		return rencontreService.getAll();
