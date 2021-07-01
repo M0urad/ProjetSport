@@ -1,5 +1,6 @@
+<div class="showcase">
+  <div class="card container col-3">
 <h1>Page de connexion</h1>
-
 <form (ngSubmit)="seConnecter()" class="log">
   <div class="form-group">
     <label>Login:</label>
@@ -34,8 +35,9 @@
   <div>{{ message }}</div>
 </form>
 
-<div class="inscr">
+<div class="">
   Pas encore de compte ?
   <a [routerLink]="['/inscription']" routerLinkActive="active"> S'inscrire </a
   ><br />
+</div></div>
 </div>
