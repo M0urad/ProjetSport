@@ -1,25 +1,28 @@
 <div class="showcase">
-<h1>Bienvenue sur le site n°1 d'évenements sportifs</h1>
-<form class="card container col-4">
-<div class="row">
-    <b><p class="card-text">Organise ta rencontre !</p></b>
-    <a
-      class="btn btn-warning"
-      [routerLink]="['/creationEvent']"
-      routerLinkActive="active"
-    >
-      Organiser</a
-    >
-  </div>
+  <h1>Bienvenue sur le site n°1 d'évenements sportifs</h1>
+  <form class="card container col-4" *ngIf="isLogged()">
+    <div class="row">
+      <b><p class="card-text">Organise ta rencontre !</p></b>
+      <a
+        class="btn btn-warning"
+        [routerLink]="['/creationEvent']"
+        routerLinkActive="active"
+      >
+        Organiser</a
+      >
+    </div>
 
-  <div class="row">
-    <b><p class="card-text">Consulte tes évènements passés et à venir !</p></b>
-    <a
-      [routerLink]="['/listEvents']"
-      routerLinkActive="active"
-      class="btn btn-warning"
-    >
-      Consulter
-    </a></div></form>
-  </div>
-
+    <div class="row">
+      <b
+        ><p class="card-text">Consulte tes évènements passés et à venir !</p></b
+      >
+      <a
+        [routerLink]="['/listEvents']"
+        routerLinkActive="active"
+        class="btn btn-warning"
+      >
+        Consulter
+      </a>
+    </div>
+  </form>
+</div>
