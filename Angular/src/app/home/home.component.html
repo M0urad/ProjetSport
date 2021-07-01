@@ -1,5 +1,7 @@
+<div>
+  <body>
+<div class="showcase">
 <h1>Bienvenue sur le site n°1 d'évenements sportifs</h1>
-
 <div class="connexion">
   <a *ngIf="!isLogged()" [routerLink]="['/login']" routerLinkActive="active">
     Se Connecter</a
@@ -7,7 +9,6 @@
 </div>
 
 <div class="row">
-  <div class="card offset-1 col-4">
     <p class="card-text">Organise ta rencontre !</p>
     <a
       class="btn btn-warning"
@@ -18,7 +19,7 @@
     >
   </div>
 
-  <div class="card offset-1 col-4">
+
     <p class="card-text">Consulte tes évènements passés et à venir !</p>
     <a
       [routerLink]="['/listEvents']"
@@ -28,4 +29,5 @@
       Consulter
     </a>
   </div>
+</body>
 </div>

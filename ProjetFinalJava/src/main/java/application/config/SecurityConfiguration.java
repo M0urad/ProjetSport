@@ -50,6 +50,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.POST,"/api/joueur","/api/joueur/**").anonymous()
 					.antMatchers(HttpMethod.GET,"/api/joueur","/api/joueur/**").authenticated()
 					.antMatchers(HttpMethod.DELETE,"/api/joueur","/api/joueur/**").hasAnyRole("ADMIN")
+					
+					.antMatchers(HttpMethod.GET,"/api/compte/user").authenticated()
 				.and()
 				.httpBasic();
 		// @formatter:on

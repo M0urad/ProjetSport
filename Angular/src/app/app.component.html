@@ -39,14 +39,16 @@
       </td>
 
       <td>
-        <a *ngIf="isLogged()">Bienvenue {{ message }}</a>
+        <a *ngIf="isLogged()">Bienvenue {{ prenom }}</a>
+      </td>
+
+      <td>
+        <a  *ngIf="isLogged()" (click)="logoff()" >Déconnexion</a>
+
+
       </td>
     </thead>
   </table>
 </nav>
 <router-outlet></router-outlet>
-<div class="deco">
-  <button *ngIf="isLogged()" (click)="logoff()" class="btn btn-danger">
-    Déconnexion
-  </button>
-</div>
+
