@@ -3,3 +3,17 @@
   width: fit-content;
 
 }
+
+.showcase {
+  background-image: url(/assets/image/stade.jpeg);
+
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
