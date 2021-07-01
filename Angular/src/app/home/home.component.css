@@ -1,6 +1,6 @@
 h1 {
   text-align: center;
-  color: mediumslateblue ;
+  color: white ;
 
 }
 
@@ -26,4 +26,8 @@ p{
   align-items: center;
   text-align: center;
   padding: 0 20px;
+}
+button{
+  color: black;
+  background-color: gainsboro;
 }

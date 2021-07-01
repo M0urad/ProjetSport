@@ -3,12 +3,12 @@
   <form class="card container col-4" *ngIf="isLogged()">
     <div class="row">
       <b><p class="card-text">Organise ta rencontre !</p></b>
-      <a
-        class="btn btn-warning"
+      <button
+        class="btn btn-secondary"
         [routerLink]="['/creationEvent']"
         routerLinkActive="active"
       >
-        Organiser</a
+        Organiser</button
       >
     </div>
 
@@ -16,13 +16,13 @@
       <b
         ><p class="card-text">Consulte tes évènements passés et à venir !</p></b
       >
-      <a
+      <button
         [routerLink]="['/listEvents']"
         routerLinkActive="active"
-        class="btn btn-warning"
+        class="btn btn-secondary"
       >
         Consulter
-      </a>
+      </button>
     </div>
   </form>
 </div>

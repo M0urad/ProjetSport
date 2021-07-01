@@ -11,7 +11,11 @@ h1 {
   text-align: right;
   margin-right: 400px;
 }
+button{
+  color: black;
+  background-color: gainsboro;
 
+}
 .showcase {
   background-image: url(/assets/image/sport.jpg);
 
@@ -25,3 +29,5 @@ h1 {
   text-align: center;
   padding: 0 20px;
 }
+
+
