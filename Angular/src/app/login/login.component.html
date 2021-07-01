@@ -1,6 +1,7 @@
 <div class="showcase">
+  <h1>Page de connexion</h1>
   <div class="card container col-3">
-<h1>Page de connexion</h1>
+
 <form (ngSubmit)="seConnecter()" class="log">
   <div class="form-group">
     <label>Login:</label>
@@ -20,7 +21,13 @@
     />
   </div>
 
-  <table>
+
+
+<div class="">
+  Pas encore de compte ?
+  <a [routerLink]="['/inscription']" routerLinkActive="active"> S'inscrire </a
+  ><br />
+   <table>
     <td><button type="submit" class="btn btn-info">Connexion</button></td>
     <td>
       <button
@@ -32,12 +39,6 @@
       </button>
     </td>
   </table>
-  <div>{{ message }}</div>
-</form>
-
-<div class="">
-  Pas encore de compte ?
-  <a [routerLink]="['/inscription']" routerLinkActive="active"> S'inscrire </a
-  ><br />
-</div></div>
+</div></form>
+</div>
 </div>
