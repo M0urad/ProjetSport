@@ -136,11 +136,9 @@
         >
       </td>
 
-      <td>
-        <div *ngIf="isLogged()">
-          <div *ngIf="!isUndefined(); else bjr">Bienvenue {{ prenom }} !</div>
-          <ng-template #bjr> Bienvenue admin !</ng-template>
-        </div>
+      <td *ngIf="isLogged()">
+        <span *ngIf="!isUndefined(); else bjr">Bienvenue {{ prenom }} !</span>
+        <ng-template #bjr> Bienvenue admin !</ng-template>
       </td>
 
       <td>
