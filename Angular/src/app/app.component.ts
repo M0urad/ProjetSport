@@ -24,4 +24,9 @@ export class AppComponent {
     localStorage.clear();
     this.router.navigate(['/home']);
   }
+
+  isUndefined(): boolean {
+    if (this.prenom === 'undefined') return true;
+    else return false;
+  }
 }

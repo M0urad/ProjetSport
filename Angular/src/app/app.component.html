@@ -39,14 +39,20 @@
       </td>
 
       <td>
-        <a *ngIf="isLogged()">Bienvenue {{ prenom }}</a>
+        <div *ngIf="isLogged()">
+          <div *ngIf="!isUndefined(); else bjr">Bienvenue {{ prenom }} !</div>
+          <ng-template #bjr> Bienvenue admin !</ng-template>
+        </div>
       </td>
 
       <td>
-        <a  *ngIf="isLogged()" [routerLink]="['/home']"
-        routerLinkActive="active" (click)="logoff()" >Déconnexion</a>
-
-
+        <a
+          *ngIf="isLogged()"
+          [routerLink]="['/home']"
+          routerLinkActive="active"
+          (click)="logoff()"
+          >Déconnexion</a
+        >
       </td>
     </thead>
   </table>
