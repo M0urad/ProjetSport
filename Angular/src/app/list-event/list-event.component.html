@@ -22,13 +22,12 @@
         <td>{{ rencontre.date }}</td>
         <td>{{ rencontre.lieu.nom }}</td>
         <td>{{ rencontre.nbPlaces }}</td>
-        <td>{{ resPlaces(rencontre.id) }}</td>
+        <td>{{ resPlaces(rencontre) }}</td>
 
         <td>
           <form
             *ngIf="
-              !isInscrit(rencontre) &&
-              !isEnough(rencontre.nbPlaces, rencontre.id)
+              !isInscrit(rencontre) && !isEnough(rencontre.nbPlaces, rencontre)
             "
             (ngSubmit)="insc(rencontre.id)"
           >
@@ -44,10 +43,10 @@
               </button>
             </div>
           </form>
-          <div *ngIf="isEnough(rencontre.nbPlaces, rencontre.id)">
+          <div *ngIf="isEnough(rencontre.nbPlaces, rencontre)">
             <p>Complet</p>
           </div>
-          <div *ngIf="!isInscrit(rencontre)">
+          <div *ngIf="isInscrit(rencontre)">
             <button class="btn btn-outline-primary">Déjà Inscrit</button>
           </div>
         </td>

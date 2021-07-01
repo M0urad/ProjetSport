@@ -23,6 +23,7 @@ export class ListEventComponent implements OnInit {
   place: number = 0;
   compte: Compte = new Compte();
   placesReserveesCtrl: FormControl;
+  resePlaces: number = 0;
 
   constructor(
     private rencontreService: RencontreService,
@@ -53,7 +54,7 @@ export class ListEventComponent implements OnInit {
         this.rencontres = this.rencontreService.getRencAng();
       });
 
-    this.inscription.placesReservees = this.placesReserveesCtrl.value;
+    this.inscription.nbPlaces = this.placesReserveesCtrl.value;
   }
 
   isInscrit(rencontre: Rencontre): boolean {
@@ -61,8 +62,7 @@ export class ListEventComponent implements OnInit {
     for (let b of rencontre.inscriptions) {
       if (b.joueur.username == localStorage.getItem('login')) {
         subscribed = true;
-      } else {
-        subscribed = false;
+        return subscribed;
       }
     }
     return subscribed;
@@ -75,15 +75,20 @@ export class ListEventComponent implements OnInit {
     return subscribed;
   }
 
-  isEnough(nbPlaces: Observable<number>, idRencontre: number): boolean {
-    if (this.resPlaces(idRencontre) < nbPlaces) {
+  isEnough(nbPlaces: number, rencontre: Rencontre): boolean {
+    if (this.resPlaces(rencontre) < nbPlaces) {
       return false;
     } else {
       return true;
     }
   }
-  resPlaces(idRencontre: number): Observable<number> {
-    return this.inscriptionService.getResPlaces(idRencontre);
+  resPlaces(rencontre: Rencontre): number {
+    let tmp: number = 0;
+    console.log(rencontre.inscriptions);
+    for (let a of rencontre.inscriptions) {
+      tmp = tmp + a.nbPlaces;
+    }
+    return tmp;
   }
 
   isAdmin(): boolean {

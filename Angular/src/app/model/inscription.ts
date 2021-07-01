@@ -3,7 +3,7 @@ import { Rencontre } from './rencontre';
 export class Inscription {
   constructor(
     private _joueur: Joueur | any = null,
-    private _placesReservees: number = 0
+    private _nbPlaces: number = 0
   ) {}
 
   /**
@@ -23,18 +23,18 @@ export class Inscription {
   }
 
   /**
-   * Getter placesReservees
+   * Getter nbPlaces
    * @return {number }
    */
-  public get placesReservees(): number {
-    return this._placesReservees;
+  public get nbPlaces(): number {
+    return this._nbPlaces;
   }
 
   /**
-   * Setter placesReservees
+   * Setter nbPlaces
    * @param {number } value
    */
-  public set placesReservees(value: number) {
-    this._placesReservees = value;
+  public set nbPlaces(value: number) {
+    this._nbPlaces = value;
   }
 }
