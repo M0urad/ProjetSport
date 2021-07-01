@@ -1,74 +1,84 @@
 <div name="formulaire" class="container" class="col-sm-5"></div>
-<div class="container">
-  <h1>Création d'une rencontre</h1>
-  <form class="card container col-8" [formGroup]="form">
-    <fieldset>
-      <form (ngSubmit)="save()">
-        <div class="form-group">
-          <label>Organisateur :</label>
-          <input
-            class="form-control"
-            name="proprio"
-            readonly
-            [placeholder]="joueur.nom"
-            [formControl]="idCtrl"
-          />
-        </div>
-        <div class="form-group">
-          <label>Donne un nom à ta rencontre :</label>
-          <input
-            class="form-control"
-            name="nom"
-            placeholder="Le match du siècle"
-            [formControl]="nomCtrl"
-          />
-        </div>
-        <div class="form-group">
-          <label>Choisis une date :</label>
-          <input
-            class="form-control"
-            name="date"
-            type="date"
-            [formControl]="dateCtrl"
-          />
-        </div>
-        <p>Adresse</p>
-        <div class="form-group">
-          <label>Nom du lieu :</label>
-          <input class="form-control" name="nom" [formControl]="nomLieuCtrl" />
-        </div>
-        <div class="form-group">
-          <label>Numéro de voie :</label>
-          <input
-            class="form-control"
-            name="numero"
-            [formControl]="numVoieCtrl"
-          />
-        </div>
-        <div class="form-group">
-          <label>Voie :</label>
-          <input class="form-control" name="voie" [formControl]="voieCtrl" />
-        </div>
-        <div class="form-group">
-          <label>Ville :</label>
-          <input class="form-control" name="ville" [formControl]="villeCtrl" />
-        </div>
-        <div class="form-group">
-          <label>Code Postal :</label>
-          <input class="form-control" name="cp" [formControl]="cpCtrl" />
-        </div>
-        <div class="form-group">
-          <label>Nombre de participants à la rencontre </label>
-          <input
-            class="form-control"
-            name="nbPlaces"
-            type="number"
-            [formControl]="placesCtrl"
-          />
-        </div>
-        <button type="submit" class="btn btn-outline-info">Valider</button>
-        <a [routerLink]="['/home']"> Annuler</a>
-      </form>
-    </fieldset>
-  </form>
+<div class="showcase">
+  <div class="container">
+    <h1>Création d'une rencontre</h1>
+    <form class="container col-6" [formGroup]="form">
+      <fieldset>
+        <form (ngSubmit)="save()">
+          <div class="form-group">
+            <label>Organisateur :</label>
+            <input
+              class="form-control"
+              name="proprio"
+              readonly
+              [placeholder]="joueur.nom"
+              [formControl]="idCtrl"
+            />
+          </div>
+          <div class="form-group">
+            <label>Donne un nom à ta rencontre :</label>
+            <input
+              class="form-control"
+              name="nom"
+              placeholder="Le match du siècle"
+              [formControl]="nomCtrl"
+            />
+          </div>
+          <div class="form-group">
+            <label>Choisis une date :</label>
+            <input
+              class="form-control"
+              name="date"
+              type="date"
+              [formControl]="dateCtrl"
+            />
+          </div>
+          <p>Adresse</p>
+          <div class="form-group">
+            <label>Nom du lieu :</label>
+            <input
+              class="form-control"
+              name="nom"
+              [formControl]="nomLieuCtrl"
+            />
+          </div>
+          <div class="form-group">
+            <label>Numéro de voie :</label>
+            <input
+              class="form-control"
+              name="numero"
+              [formControl]="numVoieCtrl"
+            />
+          </div>
+          <div class="form-group">
+            <label>Voie :</label>
+            <input class="form-control" name="voie" [formControl]="voieCtrl" />
+          </div>
+          <div class="form-group">
+            <label>Ville :</label>
+            <input
+              class="form-control"
+              name="ville"
+              [formControl]="villeCtrl"
+            />
+          </div>
+          <div class="form-group">
+            <label>Code Postal :</label>
+            <input class="form-control" name="cp" [formControl]="cpCtrl" />
+          </div>
+          <div class="form-group">
+            <label>Nombre de participants à la rencontre </label>
+            <input
+              class="form-control"
+              name="nbPlaces"
+              type="number"
+              [formControl]="placesCtrl"
+            />
+          </div>
+          <button type="submit" class="btn btn-outline-info">Valider</button>
+          <a [routerLink]="['/home']"> Annuler</a>
+        </form>
+      </fieldset>
+    </form>
+  </div>
 </div>

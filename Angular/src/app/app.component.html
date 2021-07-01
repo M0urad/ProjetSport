@@ -43,12 +43,9 @@
       </td>
 
       <td>
-        <a  *ngIf="isLogged()" (click)="logoff()" >Déconnexion</a>
-
-
+        <a *ngIf="isLogged()" (click)="logoff()">Déconnexion</a>
       </td>
     </thead>
   </table>
 </nav>
 <router-outlet></router-outlet>
-
