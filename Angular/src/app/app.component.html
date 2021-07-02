@@ -16,7 +16,7 @@
   </head>
   <body>
     <nav
-      class="navbar navbar-expand-md navbar-expand-lg navbar-light bg-primary"
+      class="navbar navbar-expand-md navbar-expand-lg navbar-dark bg-success"
     >
       <div class="container-fluid">
         <a
@@ -89,7 +89,13 @@
             </li>
 
             <li>
-              <button  class="btn btn-primary" *ngIf="isLogged()" (click)="logoff()">Déconnexion</button>
+              <button
+                class="btn btn-primary"
+                *ngIf="isLogged()"
+                (click)="logoff()"
+              >
+                Déconnexion
+              </button>
             </li>
           </ul>
         </div>
